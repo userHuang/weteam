@@ -1,0 +1,338 @@
+/********************************************************************************
+ * 商家入驻页面样式
+ *******************************************************************************/
+html.login-page {
+	background: url(/static/img/logo/logo.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover; /*for webKit*/
+    -moz-background-size: cover; /*Mozilla*/
+    -o-background-size: cover; /*opera*/
+    background-size: cover; /*generic*/
+}
+em {
+    color: red;
+}
+li {
+    margin-bottom: 1px;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+     background: none; 
+}
+.wareSort .pre-scrollable{
+    height: 245px;
+}
+div#apply_page_3_upload_field {
+    width: 890px;
+    margin: 0 auto;
+}
+.arrow {
+    float: left;
+    margin-top: 75px;
+    padding: 0 10px 0 10px;
+}
+.btn-primary {
+    background-color: #0095ff;
+    border-color: #0095ff;
+}
+.btn-default {
+    color: #333333;
+    background-color: #e5e5e5;
+    border-color: #e5e5e5;
+}
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn{
+    background-color: #e5e5e5 !important;
+    border-color: #e5e5e5 !important;
+    color: #333333;
+}
+.toast-content{
+    display: none;
+    font-size: 1.2em;
+    height: 45px;
+    left: 38%;
+    line-height: 30px;
+    padding: 8px 80px 14px 80px;
+    position: fixed;
+    text-align: center;
+    z-index: 1041;
+    overflow: hidden;
+    opacity: .75;
+}
+.alert-danger {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+}
+.relative {position: relative;}
+.errorHint {color: #CC0000;}
+
+.blue {color: #0088CC;}
+.red {color: #CC0000;}
+.gray {color: #888888;}
+.green{color:green;}
+.wx-sortableTableHead {
+	cursor: pointer;
+}
+#spin {
+	float: left;
+	height: 80px;
+	width: 100px;
+}
+#spin-wrapper {
+	background-color: #888;
+	opacity: 0.8;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow:    2px 2px 5px rgba(0, 0, 0, 0.75);
+	box-shadow:         2px 2px 5px rgba(0, 0, 0, 0.75);
+	color: #FFF;
+	display: none;
+	font-size: 14px;
+	height: 120px;
+	left: 50%;
+	position: fixed;
+	margin-left: -60px;
+	top: 200px;
+	width: 120px;
+	z-index: 10000;
+	padding: 10px;
+}
+#topbar {
+	width: 100%;
+	height: 100px;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	border-bottom: 2px solid #6aa2ca;
+}
+
+#global-nav {
+    height: 100px;
+    position: relative;
+    background-color: #FFFFFF;
+    font-size: 1.8em;
+    background: url("/static/img/business_logo.png");
+    background-repeat: no-repeat;
+    margin-top: 10px;
+    margin-left: 140px;
+}
+#weixin-logo {
+	width: 680px;
+	height: 40px;
+	line-height: 40px;
+	position: absolute;
+	left: 150px;
+	top: 15px;
+	font-size: 1.2em;
+	font-family: '微软雅黑';
+}
+#top-action-bar {
+	font-size: 14px;
+	text-align: right;
+	margin-right: 1px;
+	padding-top: 20px;
+	color: #EFEFEF;
+}
+#top-action-bar a:link, #top-action-bar a:visited {
+	color: white;
+	text-decoration: no-underline;
+	color: #EFEFEF;
+}
+.xa-pageContainer{
+    margin-top: 10px;
+}
+.form-horizontal .form-group {
+    margin-right: 0px;
+    margin-left: -15px;
+}
+.business_apply_from{
+    margin-top: 40px;
+}
+
+/*第二页*/
+.fileinput-button input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 200px!important;
+    direction: ltr;
+    cursor: pointer;
+}
+.fileinput-button {
+    position: relative;
+    overflow: hidden;
+    display: block;
+}
+#apply_page_2 .form-group{
+	display: inline-block;
+	margin-left: 100px;
+	text-align: center;
+}
+#apply_page_2 .form-group:first-child{
+    margin-left: 0;
+}
+#apply_page_3 .form-group{
+	display: inline-block;
+    margin-right: 10px;
+}
+#apply_page_2{
+	margin: 0 auto;
+    display: table;
+}
+.page2_help_info{
+    padding-bottom: 250px;
+    padding-top: 30px;
+    text-align: center;
+}
+img.wui-upload-img {
+    width: 100px;
+    height: 100px;
+    margin-left: 30px;
+}
+.xui-datePicker {
+	line-height: 24px;
+    width: 160px !important;
+    background: url(/static/img/calendar.jpg) no-repeat !important;
+    background-position: right !important;
+    background-color: #f2f2f2 !important;
+    display: block;
+}
+.ui-timepicker-div{
+    width:100%;
+    height:30px;
+}
+.ui-timepicker-div dl dt,
+.ui-timepicker-div dl dd{
+    width:50px;
+    height:15px;
+    float:left;
+    line-height:2;
+    text-align: center;
+}
+.ui_tpicker_time{
+    display:none;
+}
+.ui-timepicker-div dl dt:first-child{
+   display:none;
+}
+.xui-datePicker {
+    margin-top: 25px;
+}
+
+/*第三页*/
+/**选择商品分类**/
+.wareSort { padding: 15px 8px 15px 7px;margin: 0 auto;width: 700px;}
+.wareSort ul { float: left; width: 290px; padding: 10px; border: 1px solid #ddd; margin-right: 7px; margin-left: 8px; background-color: #fff; }
+.wareSort ul li a { display: block; padding-right: 25px; padding-left: 10px; border: 1px solid #fff; line-height: 28px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.wareSort ul li a:hover { color: #3399ff; }
+.wareSort #sort2 li.active a { border-color: #3399ff; background: #3399ff url(../img/arrow.png) no-repeat right center; color: #fff !important; }
+.wareSort #sort1 li.active a { border-color: #3399ff; background: #3399ff; color: #fff !important; }
+.selectedSort b { font-weight: bold; }
+.selectedSort i font { font-family: simsun; }
+.wareSortBtn { padding-bottom: 50px; text-align: center; }
+.wareSortBtn input { width: 200px; height: 36px; border: 1px solid #ed7f5a; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; background-color: #ed7f5a; color: #fff; }
+.wareSortBtn input:hover { border-color: #d95459; background-color: #d95459; }
+.wareSortBtn input:disabled { border-color: #ddd; background-color: #f6f6f6; color: #9a9a9a; cursor: default; }
+#apply_page_3 a {
+	text-decoration: none; color: #333;
+}
+#apply_page_3{
+    text-align: center;
+}
+.page3_help_info {
+    padding-bottom: 30px;
+    padding-top: 30px;
+    text-align: center;
+}
+span.selectedSortSpan {
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.selectedSort {
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 0 10px 0 10px;
+}
+ul.nav {
+    display: table;
+}
+ul.nav li{
+    width: 400px;
+    border-bottom:5px solid #d0d0d0;
+}
+ul.nav li i{
+    font-size: 26px;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 50%;
+    line-height: 30px;
+    font-style: normal;
+}
+ul.nav li.active i{
+    background: #4ab3ff;
+    color: white;
+    font-weight: normal;
+}
+div.xa-pageContainer ul.nav li.active a{
+    background: none;
+    font-weight: bolder;
+    color: #4ab3ff;
+}
+div.xa-pageContainer ul.nav li.active{
+    border-bottom: 5px solid #4ab3ff;
+}
+div.xa-pageContainer ul.nav li.active:after{
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #4ab3ff;
+    position: absolute;
+    bottom: 0px;
+    left: 200px;
+}
+ul.nav li a{
+    color: #666;
+}
+#company_type1+label,#company_type2+label{
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #e4e4e4;
+    margin-right: 10px;
+}
+#company_type1:checked+label,#company_type2:checked+label{
+    border: 2px solid #4ab3ff;
+    background: url('/static/img/checked_right.png') no-repeat right bottom;
+}
+
+/*第四页*/
+#apply_page_4 {
+    text-align: center;
+}
+#apply_page_4 .btn-primary{
+    margin-top: 6%;
+}
+.page4_success_info {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: '微软雅黑';
+    text-align: left;
+    margin-left: 14px;
+}
+.page4_help_info {
+    text-align: left;
+    margin-left: 14px;
+    margin-top: 5px;
+}

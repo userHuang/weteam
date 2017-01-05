@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <script type="text/javascript" src="../internal.js"></script>
+    <style type="text/css">
+        *{margin:0;padding:0;color: #838383;}
+        table{font-size: 12px;margin: 10px;line-height: 30px}
+        .txt{width:300px;height:21px;line-height:21px;border:1px solid #d7d7d7;}
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><label for="text"> <var id="lang_input_text"></var></label></td>
+            <td><input class="txt" id="text" type="text" disabled="true"/></td>
+        </tr>
+        <tr>
+            <td colspan="2" id="textMsg"></td>
+        </tr>
+        <tr>
+            <td><label for="href"> <var id="lang_input_url"></var></label></td>
+            <td><input class="txt" id="href" type="text" style="width: 260px"/><button onclick="onClickSelectLinkTargetButton()">微站页面</button></td>
+        </tr>
+        <!--
+        <tr>
+            <td><label for="title"> <var id="lang_input_title"></var></label></td>
+            <td><input class="txt" id="title" type="text"/></td>
+        </tr>
+        <tr>
+             <td colspan="2">
+                 <label for="target"><var id="lang_input_target"></var></label>
+                 <input id="target" type="checkbox"/>
+             </td>
+        </tr>
+    -->
+        <tr>
+            <td colspan="2" id="msg"></td>
+        </tr>
+    </table>
+<script type="text/javascript" src="/static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    var range = editor.selection.getRange(),
+        link = range.collapsed ? editor.queryCommandValue( "link" ) : editor.selection.getStart(),
+        url,
+        text = $G('text'),
+        rangeLink = domUtils.findParentByTagName(range.getCommonAncestor(),'a',true),
+        orgText;
+    link = domUtils.findParentByTagName( link, "a", true );
+    if(link){
+        url = utils.html(link.getAttribute( 'data_ue_src' ) || link.getAttribute( 'href', 2 ));
+
+        if(rangeLink === link && !link.getElementsByTagName('img').length){
+            text.removeAttribute('disabled');
+            orgText = text.value = link[browser.ie ? 'innerText':'textContent'];
+        }else{
+            text.setAttribute('disabled','true');
+            text.value = lang.validLink;
+        }
+
+    }else{
+        if(range.collapsed){
+            text.removeAttribute('disabled');
+            text.value = '';
+        }else{
+            text.setAttribute('disabled','true');
+            text.value = lang.validLink;
+        }
+
+    }
+    //$G("title").value = url ? link.title : "";
+    if (url && (url.indexOf('/jqm/preview/') !== -1)) {
+        var items = url.split('&__name=');
+        var href = items[0];
+        href = '/workbench/jqm/preview/' + href.split('/preview/')[1];
+        var dataPath = items[1];
+        $('#href').attr('data-href', href).val(dataPath);
+    } else {
+        $G("href").value = url ? url: '';
+    }
+    //$G("target").checked = url && link.target == "_blank" ? true :  false;
+    $focus($G("href"));
+
+    function validateLinkData() {
+        var isValidate = true;
+        if ($.trim($('#text').val()).length === 0) {
+            $G("textMsg").innerHTML = "<span style='color: red'>请输入链接文本</span>";
+            isValidate = false;
+        } else {
+            $G("textMsg").innerHTML = "";
+        }
+
+        if ($('#href').attr('data-href')) {
+            $G("msg").innerHTML = "";
+        } else {
+            var href =$G('href').value.replace(/^\s+|\s+$/g, '');
+            // if(!hrefStartWith(href,["http","/","ftp://"])){
+            //     $G("msg").innerHTML = "<span style='color: red'>"+lang.httpPrompt+"</span>";
+            //     isValidate = false;
+            // }else 
+            if(href.length > 1024){
+                $G("msg").innerHTML = "<span style='color: red'>您输入的超链接长度为"+href.length+"字节,已经大于1024，请检查您的输入</span>";
+                isValidate = false;
+            }else{
+                $G("msg").innerHTML = "";
+            }
+        }
+
+        return isValidate;
+    }
+
+    function handleDialogOk(){
+        if (!validateLinkData()) {
+            return false;
+        }
+        var href =$G('href').value.replace(/^\s+|\s+$/g, '');
+        if(href){
+            var dataHref = $('#href').attr('data-href');
+            if (dataHref) {
+                if (dataHref.indexOf('http:') !== -1) {
+                    href = dataHref;
+                } else {
+                    var weappHref = "http://" + parent.W.host + $('#href').attr('data-href');
+                    if (weappHref) {
+                        href = weappHref + '&__name=' + href;
+                    }
+                }
+            }
+
+            if (href.indexOf('/jqm/preview/') !== -1) {
+                //weapp webapp link, do nothing
+            } else if(!hrefStartWith(href,["http","/","ftp://","mailto://"])) {
+                href  = "http://" + href;
+            }
+            var obj = {
+                'href' : href,
+                /*'target' : $G("target").checked ? "_blank" : '_self',
+                'title' : $G("title").value.replace(/^\s+|\s+$/g, ''),
+                'data_ue_src':href
+                */
+            };
+            //修改链接内容的情况太特殊了，所以先做到这里了
+            //todo:情况多的时候，做到command里
+            if(orgText && text.value != orgText){
+                link[browser.ie ? 'innerText' : 'textContent'] =  obj.textValue = text.value;
+                range.selectNode(link).select()
+            }
+            if(range.collapsed){
+                obj.textValue = text.value;
+            }
+            editor.execCommand('link',obj );
+            dialog.close();
+        }
+    }
+    dialog.onok = handleDialogOk;
+    $G('href').onkeydown = function(evt){
+        evt = evt || window.event;
+        if (evt.keyCode == 13) {
+            handleDialogOk();
+            return false;
+        }
+    };
+    /*
+    $G('href').onblur = function(){
+        if ($('#href').attr('data-href')) {
+            return;
+        }
+        if(!hrefStartWith(this.value,["http","/","ftp://"])){
+            $G("msg").innerHTML = "<span style='color: red'>"+lang.httpPrompt+"</span>";
+        }else{
+            $G("msg").innerHTML = "";
+        }
+    };
+    */
+
+    function hrefStartWith(href,arr){
+        href = href.replace(/^\s+|\s+$/g, '');
+        for(var i=0,ai;ai=arr[i++];){
+            if(href.indexOf(ai)==0){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function onClickSelectLinkTargetButton() {
+        if (parent !== window) {
+            parent.W.ueditor.handleSelectLinkTarget(function(data) {
+                var link = JSON.parse(data);
+		if (link.data.indexOf('http:') === -1) {
+                	link.data = '/workbench/jqm/preview/' + link.data;
+		}
+                $('#href').val(link.data_path).attr('data-href', link.data);
+            });
+        }
+    }
+
+</script>
+</body>
+</html>

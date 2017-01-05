@@ -1,0 +1,304 @@
+html.login-page {
+	background: url(/static/img/logo/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover; /*for webKit*/
+    -moz-background-size: cover; /*Mozilla*/
+    -o-background-size: cover; /*opera*/
+    background-size: cover; /*generic*/
+}
+
+
+.relative {position: relative;}
+.errorHint {color: #CC0000;}
+
+.blue {color: #0088CC;}
+.red {color: #CC0000;}
+.gray {color: #888888;}
+.green{color:green;}
+.wx-sortableTableHead {
+	cursor: pointer;
+}
+
+#spin {
+	float: left;
+	height: 80px;
+	width: 100px;
+}
+
+
+#spin-wrapper {
+	background-color: #888;
+	opacity: 0.8;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow:    2px 2px 5px rgba(0, 0, 0, 0.75);
+	box-shadow:         2px 2px 5px rgba(0, 0, 0, 0.75);
+	color: #FFF;
+	display: none;
+	font-size: 14px;
+	height: 120px;
+	left: 50%;
+	position: fixed;
+	margin-left: -60px;
+	top: 200px;
+	width: 120px;
+	z-index: 10000;
+	padding: 10px;
+}
+
+/********************************************************************************
+ * login页面样式
+ *******************************************************************************/
+#topbar {
+	position: fixed;
+	width: 100%;
+	height: 60px;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+
+#global-nav {
+	width: 100%;
+	position: relative;
+	background-color: #214E6D;
+	background-color: rgba(255, 255, 255, 0.97);
+	-webkit-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+	font-size: 1.8em;
+}
+
+#weixin-logo {
+	width: 680px;
+	height: 40px;
+	line-height: 40px;
+	position: absolute;
+	left: 10%;
+	top: 20px;
+	font-size: 1.2em;
+	text-shadow: 4px 4px 7px #000;
+}
+
+#top-action-bar {
+	font-size: 14px;
+	text-align: right;
+	margin-right: 1px;
+	padding-top: 20px;
+	color: #EFEFEF;
+}
+
+#top-action-bar a:link, #top-action-bar a:visited {
+	color: white;
+	text-decoration: no-underline;
+	color: #EFEFEF;
+}
+
+/*
+#front-bg {
+	position: fixed;
+	width: 200%;
+	height: 200%;
+	background: #000;
+}
+
+#front-bg img {
+	margin: auto;
+	min-width: 50%;
+	min-height: 50%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+*/
+
+#front-card {
+	top: 25%;
+	left: 60%;
+	height: 328px;
+	position: absolute;
+	/*border: solid 1px #FFFFFF;*/
+}
+
+#front-welcome {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 520px;
+	height: 328px;
+}
+
+#front-welcome-text {
+	position: absolute;
+	/*bottom: 60%;*/
+	left: 0;
+	width: 470px;
+	font-size: 20px;
+	font-weight: 300;
+	line-height: 22px;
+	color: #eee;
+	text-align: left;
+	text-shadow: #000 0 1px 2px;
+}
+
+#front-welcome h1 {
+	margin-bottom: 3px;
+	font-size: 20px;
+	font-weight: 700;
+	color: #fff;
+	line-height: 1;
+}
+
+#front-welcome p {
+	margin: 1px;
+}
+
+#front-signin {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	position: absolute;
+	top: 0;
+    width: 330px;
+}
+
+#front-signin input[type='text'],
+#front-signin input[type='password'],
+#front-signin .add-on{
+	height: 35px;
+	line-height: 35px;
+	background: none;
+    border: none;
+}
+#front-signin input[type='password'],
+#front-signin input[type='text'] {
+	font-size: 18px;
+	color: #fff !important;
+	width: 220px;
+}
+
+#front-signin .input-prepend {
+	margin-left: 15px;
+}
+
+#front-signin input[type='submit'] {
+	/*
+	width: 80px;
+	height: 30px;
+	*/
+	margin-right: 10px;
+}
+
+#front-signin h2 {
+	position: relative;
+	display: block;
+	margin-bottom: 12px;
+	font-size: 20px;
+	font-weight: 400;
+	border-bottom: 1px solid #e2e2e2;
+	-webkit-box-shadow: 0 1px 0 #fff;
+	-moz-box-shadow: 0 1px 0 #fff;
+	box-shadow: 0 1px 0 #fff;
+	-webkit-text-shadow: 0 1px 0 rgba(255,255,255,.6);
+	-moz-text-shadow: 0 1px 0 rgba(255,255,255,.6);
+	text-shadow: 0 1px 0 rgba(255,255,255,.6);
+	padding: 5px;
+	padding-left: 15px;
+	line-height: 1;
+	margin-top: 10px;
+}
+
+.xui-registerPage{
+	background-color: #EDEDED;
+}
+.xui-registerPage-form {
+	width: 420px;
+	padding: 40px;
+	margin: 90px auto;
+	background-color: #FFF;
+}
+.xui-registerPage-form .xui-i-logo {
+	color: #49C1B3;
+	font-size: 3em;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+.login-name, .login-pwd {
+    height: 46px;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding-left: 40px;
+    font-weight: normal;
+}
+.login-name {
+    background: url(/static/img/logo/icon-user.png);
+    background-repeat: no-repeat;
+    background-position: 13px 14px;
+    margin-top: 10px;
+}
+input#password {
+    margin-top: 9px !important;
+}
+.login-pwd {
+    background: url(/static/img/logo/icon-psw.png);
+    background-repeat: no-repeat;
+    background-position: 13px 15px;
+    border-top: 1px #5f6d7e solid;
+    margin-bottom: 10px;
+}
+#front-signin .form-group {
+    background: rgba(0, 0, 0, 0.5);
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+.login-btn {
+    background-color: #112435;
+    border: none;
+    color: #fff;
+    width: 290px;
+    margin-left: 20px;
+    height: 38px;
+    font-weight: bold;
+    font-size: 18px;
+    border: 1px solid #71716F;
+}
+/*登录中*/
+.logining-btn{
+    background-color: #FFFFFF;
+    border: none;
+    color: #01508B;
+    width: 290px;
+    margin-left: 20px;
+    height: 38px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    line-height: 38px;
+    display: none;
+}
+
+.error-info{
+	background-color: #FFFFFF;
+    color: #FF3701;
+    width: 290px;
+    height: 38px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 38px;
+    font-weight: bold;
+}
+.errorInfo{
+	display: none;
+}
+.logining-btn img {
+    margin-right: 10px;
+}

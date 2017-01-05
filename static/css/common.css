@@ -1,0 +1,71 @@
+/**
+ * xui公共样式
+ */
+.xui-block {display: block;}
+.xui-inlineblock {display: inline-block !important;}
+.xui-inline {display: inline;}
+
+
+
+
+
+/**
+ * 全局提示条
+ */
+.wui-globalErrorPanel {
+    position: fixed;
+    top: 50px !important;
+    left: 50%;
+    margin-left: -225px;
+    width: 450px;
+    height: 40px;
+    z-index: 1100;
+    opacity: 0.9;
+    padding: 10px 20px;
+    color: #FFF;
+    font-size: 14px;
+    border-radius: 4px;
+    font-family: "宋体";
+    opacity: 0;
+    border:0;
+}
+.wui-globalErrorPanel.alert-success {
+    background-color: #82d588;
+}
+.wui-globalErrorPanel.alert-danger {
+    background-color: #FD7171;
+}
+
+
+
+
+
+/**
+ * loading view样式
+ */
+#spin {
+	float: left;
+	height: 80px;
+	width: 100px;
+}
+#spin-wrapper {
+	background-color: #888;
+	opacity: 0.8;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow:    2px 2px 5px rgba(0, 0, 0, 0.75);
+	box-shadow:         2px 2px 5px rgba(0, 0, 0, 0.75);
+	color: #FFF;
+	display: none;
+	font-size: 14px;
+	height: 120px;
+	left: 50%;
+	position: fixed;
+	margin-left: -60px;
+	top: 200px;
+	width: 120px;
+	z-index: 10000;
+	padding: 10px;
+}

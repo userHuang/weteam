@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<div class="xa-pageContainer pr"></div>
+<div id="jsons" style="display: none;">
+	
+</div>
+{% endblock %}
+
+{% block base_js %}
+<script type="text/javascript">
+	// W.userName = "{{ request.user.first_name }}";
+	// W.topNavs = W.loadJSON('topNavs');
+	// W.secondNavs = W.loadJSON('secondNavs');
+	// W.activeTopNav = "{{ first_nav_name }}";
+	// W.activeSecondNav = "{{ second_nav_name }}";
+</script>
+{% block js %}{% endblock %}
+{% endblock %}
