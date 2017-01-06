@@ -72,7 +72,7 @@ WSGI_APPLICATION = 'weteam.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'weteam',  # Or path to database file if using sqlite3.
         'USER': 'weteam',  # Not used with sqlite3.
         'PASSWORD': 'huangjian',  # Not used with sqlite3.

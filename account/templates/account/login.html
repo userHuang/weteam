@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html class="login-page">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>项目管理平台</title>
+        <link type="text/css" rel="stylesheet" media="all" href="/static/css/base.css">
+        <link type="text/css" rel="stylesheet" media="all" href="/static/lib/bootstrap-3.3.6/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" media="all" href="/static/css/login.css">
+    </head>
+    <body class="loginBg">
+        <div id="topbar">
+            <div id="global-nav">
+                <div id="weixin-logo">WeTeam</div>
+            </div>
+        </div>
+
+        <div id="front-card">
+            <div id="front-welcome">
+                <!--
+                <div id="front-welcome-text">
+                    <h1>用白板记录项目的成长历程</h1>
+                    <h1>每日例会灵活控制项目进度</h1>
+                    <h1>在期限之内交付成功的产品</h1>
+                </div>
+            -->
+                <div id="front-signin">
+                    <form action="/account/logined_account/?_method=put" method="post">
+                        <div>
+                            <h2>登录：</h2>
+                        </div>
+                        <div class="form-group ml20 mr20">
+                            <input class="form-control" id="username" name="username" type="text" placeholder="用户名">
+                            <input class="form-control mt10" id="password" name="password" type="password" placeholder="密码">
+                        </div>
+
+                        <div style="text-align: right;" class="mt20 mr10">
+                            <!--
+                            <a href="/account/register/" class="btn btn-default">注册</a>
+                            -->
+                            <input type="submit" class="btn btn-success" value="登录" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript" src="/static/lib/jquery/jquery-1.12.2.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+               $('#username').focus();
+            });
+        </script>
+    </body>
+</html>

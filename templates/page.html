@@ -1,12 +1,47 @@
 {% extends "base.html" %}
 
-
-
 {% block content %}
-<div class="xa-pageContainer pr"></div>
-<div id="jsons" style="display: none;">
-	
+<div id="header">
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:#FFF">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" style="font-weight: bold;color:rgba(0, 0, 0, 0.71);" href="/">WeTeam</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/project/iteration/?project_id=52">迭代</a></li>
+                    <li class="active"><a href="/project/maintaince/?project_id=52">看板</a></li>
+                    <li><a href="/project/requirement/?project_id=52">需求</a></li>
+                    <li><a href="/project/bug/?project_id=52">Bug</a></li>
+                    <li><a href="/project/chart/?project_id=52">统计</a></li>
+                    <li><a href="/project/users/?project_id=52">成员</a></li>
+                    <li><a href="/project/tags/?project_id=52">配置</a></li>
+                </ul>
+
+                <div class="btn-group navbar-form navbar-right">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-user"></span> 黄健 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="javascript:void(0);" class="xa-editCurrentUser">编辑</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/logout/">退出</a></li>
+                    </ul>
+                </div>
+
+                <div class="navbar-right">
+                    <div class="navbar-header">
+                        <span class="navbar-brand" style="font-weight: bold;">商品管理FT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 </div>
+
+<div class="xa-pageContainer pr"></div>
+<div id="jsons" style="display: none;"></div>
 {% endblock %}
 
 {% block base_js %}
