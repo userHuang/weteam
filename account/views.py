@@ -12,6 +12,12 @@ from django.contrib.auth.models import User
 from account.models import *
 
 def login(request):
+    auth.logout(request)
+    c = RequestContext(request, {})
+    return render_to_response('account/login.html', c)
+
+def logout(request):
+    auth.logout(request)
     c = RequestContext(request, {})
     return render_to_response('account/login.html', c)
 
@@ -24,6 +30,6 @@ def logined_account(request):
         auth.login(request, user)
         user_id = user.id
         user_profile = UserProfile.objects.filter(user_id=user_id)
-        return HttpResponseRedirect('/account/list/')
+        return HttpResponseRedirect('/project/')
     else:
         return HttpResponseRedirect('/account/login/')

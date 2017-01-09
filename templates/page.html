@@ -6,19 +6,22 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand" style="font-weight: bold;color:rgba(0, 0, 0, 0.71);" href="/">WeTeam</a>
+                <a class="navbar-brand" style="font-weight: bold;color:rgba(0, 0, 0, 0.71);" href="/project/">WeTeam</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                {% if first_nav != "project" %}
                 <ul class="nav navbar-nav">
-                    <li><a href="/project/iteration/?project_id=52">迭代</a></li>
                     <li class="active"><a href="/project/maintaince/?project_id=52">看板</a></li>
                     <li><a href="/project/requirement/?project_id=52">需求</a></li>
                     <li><a href="/project/bug/?project_id=52">Bug</a></li>
                     <li><a href="/project/chart/?project_id=52">统计</a></li>
                     <li><a href="/project/users/?project_id=52">成员</a></li>
-                    <li><a href="/project/tags/?project_id=52">配置</a></li>
                 </ul>
-
+                {% else %}
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/project/">项目</a></li>
+                </ul>
+                {% endif %}
                 <div class="btn-group navbar-form navbar-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span> 黄健 <span class="caret"></span>
@@ -26,9 +29,15 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="javascript:void(0);" class="xa-editCurrentUser">编辑</a></li>
                         <li class="divider"></li>
-                        <li><a href="/logout/">退出</a></li>
+                        <li><a href="/account/logout/">退出</a></li>
                     </ul>
                 </div>
+                {% if first_nav == "project" %}
+                <button data-target="#myModal" role="button" data-toggle="modal" class="navbar-btn btn-default btn navbar-right xa-addProject">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    添加项目
+                </button>
+                {% endif %}
 
                 <div class="navbar-right">
                     <div class="navbar-header">
@@ -40,17 +49,81 @@
     </nav>
 </div>
 
+<!--修改密码弹窗-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="edit_salesLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">   
+            <div class="modal-header">    
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true">×</span>
+                </button>    
+                <h3 class="modal-title">创建项目</h3>   
+            </div>    
+            <div class="modal-body">    
+                <form class="form-horizontal">     
+                    <div class="form-group">      
+                        <label for="project-name-input" class="col-sm-2 control-label xui-validate-star">项目名</label>      
+                        <div class="col-sm-10">       
+                            <input id="project-name-input" name="name" class="form-control" data-validate="required" type="text">       
+                            <div class="errorHint"></div>      
+                        </div>     
+                    </div>      
+                    <div class="form-group">      
+                        <label for="project-description-input" class="col-sm-2 control-label xui-validate-star">项目简介</label>      
+                        <div class="col-sm-10">       
+                            <textarea id="project-description-input" name="description" class="form-control" rows="3" data-validate="required" data-validate-max-length="256"></textarea>       
+                            <div class="errorHint"></div>      
+                        </div>     
+                    </div>      
+                </form>
+            </div>    
+            <div class="modal-footer">    
+                <button class="btn btn-success" id="change_password">完成</button>   
+            </div>  
+        </div>
+    </div>
+</div>
+
 <div class="xa-pageContainer pr"></div>
-<div id="jsons" style="display: none;"></div>
+<div id="jsons" style="display: none;">
+    {% for inner_json_name, inner_json_content in jsons.items %}
+    <div id="__json-{{inner_json_name}}">
+        {{inner_json_content|safe}}
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
 
 {% block base_js %}
 <script type="text/javascript">
+
 	// W.userName = "{{ request.user.first_name }}";
 	// W.topNavs = W.loadJSON('topNavs');
 	// W.secondNavs = W.loadJSON('secondNavs');
 	// W.activeTopNav = "{{ first_nav_name }}";
 	// W.activeSecondNav = "{{ second_nav_name }}";
+    $('#change_password').click(function () {
+        console.log("=====");
+        var projectName = $('#project-name-input').val();
+        var projectDescription = $('#project-description-input').val();
+        console.log(projectName,projectDescription,"=====");
+        $.ajax({
+            url:'/project/new_project/',
+            type:'post',
+            data:{
+                'project_name': projectName,
+                'project_description': projectDescription
+            },
+            success:function(resp){
+                if(resp.code == 200){
+                    location.reload();
+                }
+            },
+            error:function(){
+                console.log('create_fail');
+            }
+        });
+    })
 </script>
 {% block js %}{% endblock %}
 {% endblock %}

@@ -8,5 +8,6 @@ from account import accounts
 urlpatterns = patterns('',
     url(r'list/$', accounts.account),
     url(r'login/$', views.login),
+    url(r'logout/$', views.logout),
     url(r'logined_account/$', views.logined_account),
 )

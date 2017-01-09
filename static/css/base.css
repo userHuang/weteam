@@ -1129,3 +1129,11 @@ button.xui-close{
     bottom: -12px;
     z-index: 1000;
 }
+
+.xui-validate-star:before {
+	font-size: 1.4em;
+	content: "*";
+	color: #FF0000;
+	padding-top: 5px;
+	vertical-align: middle;
+}
