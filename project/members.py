@@ -11,27 +11,29 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 
 from core.jsonresponse import create_response
+# from project import models as project_models
+# from account import models as account_models
 import models as project_models
 
 @login_required
-def main(request):
+def members(request):
 	"""
-	项目详情列表
+	成员列表
 	"""
 	jsons = {'items':[]}
 	projects = project_models.Project.objects.filter(is_deleted=False)
-	project_infos = []
+	members = []
 	if projects:
-		project_infos = [{
+		members = [{
 			'id': project.id,
 			'name': project.name,
 			'description': project.description,
 			'create_time': project.created_at.strftime("%Y-%m-%d %H:%M")
 		}for project in projects]
 
-	jsons['items'].append(('project_infos', json.dumps(project_infos)))
+	jsons['items'].append(('members', json.dumps(members)))
 	c = RequestContext(request, {
 		'jsons': jsons,
-		'first_nav': 'main'
+		'first_nav': 'member'
 	})
-	return render_to_response('project_main/main.html', c)
+	return render_to_response('member/members.html', c)

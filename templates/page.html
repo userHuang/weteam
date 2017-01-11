@@ -11,15 +11,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 {% if first_nav != "project" %}
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/project/maintaince/?project_id=52">看板</a></li>
+                    <li {% if first_nav == "main" %}class="active"{% endif %}><a href="/project/maintaince/?project_id=52">看板</a></li>
                     <li><a href="/project/requirement/?project_id=52">需求</a></li>
                     <li><a href="/project/bug/?project_id=52">Bug</a></li>
                     <li><a href="/project/chart/?project_id=52">统计</a></li>
-                    <li><a href="/project/users/?project_id=52">成员</a></li>
+                    <li {% if first_nav == "member" %}class="active"{% endif %}><a href="/project/members/?project_id=52">成员</a></li>
                 </ul>
                 {% else %}
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/project/">项目</a></li>
+                    <li {% if first_nav == "project" %}class="active"{% endif %}><a href="/project/">项目</a></li>
+                    <li {% if first_nav == "user" %}class="active"{% endif %}><a href="/user/">成员配置</a></li>
                 </ul>
                 {% endif %}
                 <div class="btn-group navbar-form navbar-right">
@@ -103,10 +104,8 @@
 	// W.activeTopNav = "{{ first_nav_name }}";
 	// W.activeSecondNav = "{{ second_nav_name }}";
     $('#change_password').click(function () {
-        console.log("=====");
         var projectName = $('#project-name-input').val();
         var projectDescription = $('#project-description-input').val();
-        console.log(projectName,projectDescription,"=====");
         $.ajax({
             url:'/project/new_project/',
             type:'post',

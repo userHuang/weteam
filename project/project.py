@@ -17,40 +17,40 @@ import models as project_models
 
 @login_required
 def project_list(request):
-    """
-    项目列表
-    """
-    jsons = {'items':[]}
-    projects = project_models.Project.objects.filter(is_deleted=False)
-    project_infos = []
-    if projects:
-        project_infos = [{
-            'id': project.id,
-            'name': project.name,
-            'description': project.description,
-            'create_time': project.created_at.strftime("%Y-%m-%d %H:%M")
-        }for project in projects]
+	"""
+	项目列表
+	"""
+	jsons = {'items':[]}
+	projects = project_models.Project.objects.filter(is_deleted=False)
+	project_infos = []
+	if projects:
+		project_infos = [{
+			'id': project.id,
+			'name': project.name,
+			'description': project.description,
+			'create_time': project.created_at.strftime("%Y-%m-%d %H:%M")
+		}for project in projects]
 
-    jsons['items'].append(('project_infos', json.dumps(project_infos)))
-    c = RequestContext(request, {
-        'jsons': jsons,
-        'first_nav': 'project'
-    })
-    return render_to_response('project/new_project.html', c)
+	jsons['items'].append(('project_infos', json.dumps(project_infos)))
+	c = RequestContext(request, {
+		'jsons': jsons,
+		'first_nav': 'project'
+	})
+	return render_to_response('project/new_project.html', c)
 
 def new_project(request):
-    """
-    新建项目
-    """
-    project_name = request.POST.get('project_name', '')
-    project_description = request.POST.get('project_description', '')
-    try:
-        project_models.Project.objects.create(
-            name= project_name,
-            description = project_description
-        )
-    except Exception, e:
-        print e
-    
-    response = create_response(200)
-    return response.get_response()
+	"""
+	新建项目
+	"""
+	project_name = request.POST.get('project_name', '')
+	project_description = request.POST.get('project_description', '')
+	try:
+		project_models.Project.objects.create(
+			name= project_name,
+			description = project_description
+		)
+	except Exception, e:
+		print e
+	
+	response = create_response(200)
+	return response.get_response()
