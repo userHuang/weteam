@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
+from account import users
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -12,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^$', include('account.urls')),
     url(r'^account/', include('account.urls')),
     url(r'^project/', include('project.urls')),
+    url(r'^user/$', users.users),
 )

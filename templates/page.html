@@ -9,7 +9,7 @@
                 <a class="navbar-brand" style="font-weight: bold;color:rgba(0, 0, 0, 0.71);" href="/project/">WeTeam</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                {% if first_nav != "project" %}
+                {% if first_nav != "project" and first_nav != "user"%}
                 <ul class="nav navbar-nav">
                     <li {% if first_nav == "main" %}class="active"{% endif %}><a href="/project/maintaince/?project_id=52">看板</a></li>
                     <li><a href="/project/requirement/?project_id=52">需求</a></li>
@@ -25,7 +25,7 @@
                 {% endif %}
                 <div class="btn-group navbar-form navbar-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user"></span> 黄健 <span class="caret"></span>
+                        <span class="glyphicon glyphicon-user"></span> {{ user.first_name }} <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="javascript:void(0);" class="xa-editCurrentUser">编辑</a></li>
@@ -42,7 +42,7 @@
 
                 <div class="navbar-right">
                     <div class="navbar-header">
-                        <span class="navbar-brand" style="font-weight: bold;">商品管理FT</span>
+                        <span class="navbar-brand" style="font-weight: bold;">TeamWork</span>
                     </div>
                 </div>
             </div>
