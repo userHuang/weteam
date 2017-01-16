@@ -42,7 +42,7 @@ def getUsers(request):
     user_profiles = account_models.UserProfile.objects.filter(status=True)
     auth_users = User.objects.all()
     user_id2name = {auth_user.id:auth_user.first_name for auth_user in auth_users}
-    print user_profiles,"++++++++"
+
     users = []
     if user_profiles:
         users = [{
