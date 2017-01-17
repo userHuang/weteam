@@ -11,8 +11,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 {% if first_nav != "project" and first_nav != "user"%}
                 <ul class="nav navbar-nav">
-                    <li {% if first_nav == "main" %}class="active"{% endif %}><a href="/project/maintaince/?project_id=52">看板</a></li>
-                    <li><a href="/project/requirement/?project_id=52">需求</a></li>
+                    <li {% if first_nav == "main" %}class="active"{% endif %}><a href="/project/main/?project_id={{project_id}}">看板</a></li>
+                    <li {% if first_nav == "require" %}class="active"{% endif %}><a href="/project/require_list/?project_id={{project_id}}">需求</a></li>
                     <li><a href="/project/bug/?project_id=52">Bug</a></li>
                     <li><a href="/project/chart/?project_id=52">统计</a></li>
                     <li {% if first_nav == "member" %}class="active"{% endif %}><a href="/project/members/?project_id=52">成员</a></li>
@@ -50,7 +50,7 @@
     </nav>
 </div>
 
-<!--修改密码弹窗-->
+<!--创建项目弹窗-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="edit_salesLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">   
