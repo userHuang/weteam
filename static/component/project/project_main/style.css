@@ -1,0 +1,51 @@
+.code-box-demo .ant-row {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.code-box-demo .ant-row > div {
+    padding: 0 8px;
+}
+
+.xui-project-description{
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.88);
+}
+
+.xui-project-createTime{
+    float: right;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.ant-card-head-title{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ant-card-head{
+    padding: 0 10px !important;
+    height: 30px;
+    line-height: 30px;
+    background: rgba(0, 168, 36, 0.32);
+}
+
+.ant-card-body{
+    min-height: 100px;
+    padding: 5px;
+}
+
+.ant-card-bordered{
+    position: relative;
+}
+
+.ant-card-body .xui-require-title{
+    position: absolute;
+    top: 4px;
+    right: 11px;
+}
+
+.glyphicon{
+    color: #9c594e;
+    font-size: 14px;
+}

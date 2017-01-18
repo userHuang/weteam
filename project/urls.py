@@ -12,6 +12,8 @@ urlpatterns = patterns('',
     url(r'new_project/', project.new_project),
     
     url(r'main/', project_main.main),
+    url(r'^get_require_details/', project_main.get_main),
+    url(r'^update_status/', project_main.update_status),
 
     url(r'members/', members.members),
 

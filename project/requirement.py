@@ -44,7 +44,7 @@ def get_require(request):
     获取需求
     """
     project_id = request.GET.get('project_id', -1)
-    requirements = project_models.Requirement.objects.filter(project_id=project_id)
+    requirements = project_models.Requirement.objects.filter(project_id=project_id).order_by('-id')
     requires = []
     if requirements:
         requires = [{
