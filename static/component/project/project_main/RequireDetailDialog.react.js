@@ -46,17 +46,17 @@ const RequireDetailDialog = React.createClass({
     },
 
     render() {
-        console.log(this.state.requireDetail,"========");
+        var requireDetail = this.props.requireDetail;
         return (
             <div className="xui-requireDetail-div mr10" style={{display: 'inline-block'}}>
                 <a className="glyphicon glyphicon-pencil" onClick={this.showModal} title="详情"></a>
-                <Modal title={this.state.requireDetail.name} 
+                <Modal title={requireDetail.name} 
                     onOk={this.handleOk} onCancel={this.handleCancel} visible={this.state.visible}
                 >
                     <div className="xi-requireDetail-content">
-                        <h4 className="mb10">创建人：{this.state.requireDetail.creator}/{this.state.requireDetail.created_at}</h4>
+                        <h4 className="mb10">创建人：{requireDetail.creator}/{requireDetail.created_at}</h4>
                         <hr/>
-                        <div className="f16">备注：{this.state.requireDetail.remark}</div>
+                        <div className="f16">备注：{requireDetail.remark}</div>
                     </div>
                 </Modal>
             </div>

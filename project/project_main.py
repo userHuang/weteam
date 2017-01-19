@@ -47,8 +47,8 @@ def get_project_data(requirements, request, user_id2name):
 		for participant in participants:
 			print participant,"======="
 			print user_id2name,"======="
-			participant = int(participant)
-			if participant in user_id2name and participant != requirement.creator_id:
+			if participant and int(participant) in user_id2name and participant != requirement.creator_id:
+				participant = int(participant)
 				print user_id2name[participant],"++++++++++"
 				participant_name.append(user_id2name[participant])
 
@@ -118,10 +118,13 @@ def update_status(request):
 	status = int(request.POST.get('status', 0))
 	participants = project_models.Requirement.objects.get(id=require_id).participant
 	
-	if participants and str(user_id) not in participants:
-		participants = participants + ',' + str(user_id)
+	if str(user_id) not in participants:
+		if participants:
+			participants = participants + ',' + str(user_id)
+		else:
+			participants = participants + str(user_id)
 	else:
-		participants = str(user_id)
+		participants = participants
 
 	if status == 4:
 		date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
