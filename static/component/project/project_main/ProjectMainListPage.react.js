@@ -92,6 +92,13 @@ const ProjectMainListPage = React.createClass({
 					</div>
 				);
 
+				const participantName = require.participant_name.map((name,index)=>{
+					console.log(name,index,"=======");
+					return(
+						<span className="xi-participant-name" key={index}>{name}</span>
+					)
+				})
+
 				return(
 					<Card 
 						className="mt20" title={title} bordered={true} 
@@ -100,6 +107,9 @@ const ProjectMainListPage = React.createClass({
 						onMouseOut={_this.onMouseOut.bind(null,refName)} 
 						key={index}>
 			        		<span className="xui-project-description">{require.name}</span>
+			        		<div className="xui-project-participant">
+			        			{participantName}
+			        		</div>
 			        		<span ref={refName} className="xui-require-title" style={{display: 'none'}}>
 				        		<RequireDetailDialog requireDetail={require}/>
 				        		<Popover 
@@ -132,6 +142,12 @@ const ProjectMainListPage = React.createClass({
 					</div>
 				);
 
+				const participantName = require.participant_name.map((name,index)=>{
+					return(
+						<span className="xi-participant-name" key={index}>{name}</span>
+					)
+				})
+
 				return(
 					<Card 
 						className="mt20" title={title} bordered={true} 
@@ -140,6 +156,9 @@ const ProjectMainListPage = React.createClass({
 						onMouseOut={_this.onMouseOut.bind(null,refName)} 
 						key={index}>
 			        		<span className="xui-project-description">{require.name}</span>
+			        		<div className="xui-project-participant">
+			        			{participantName}
+			        		</div>
 			        		<span ref={refName} className="xui-require-title" style={{display: 'none'}}>
 			        			<RequireDetailDialog requireDetail={require}/>
 			        			<Popover 
@@ -172,6 +191,13 @@ const ProjectMainListPage = React.createClass({
 					</div>
 				);
 
+				const participantName = require.participant_name.map((name,index)=>{
+					console.log(name,index,"=======");
+					return(
+						<span className="xi-participant-name" key={index}>{name}</span>
+					)
+				})
+
 				return(
 					<Card 
 						className="mt20" title={title} bordered={true} 
@@ -180,6 +206,9 @@ const ProjectMainListPage = React.createClass({
 						onMouseOut={_this.onMouseOut.bind(null,refName)} 
 						key={index}>
 			        		<span className="xui-project-description">{require.name}</span>
+			        		<div className="xui-project-participant">
+			        			{participantName}
+			        		</div>
 			        		<span ref={refName} className="xui-require-title" style={{display: 'none'}}>
 			        			<RequireDetailDialog requireDetail={require}/>
 			        			<Popover 
@@ -212,6 +241,13 @@ const ProjectMainListPage = React.createClass({
 					</div>
 				);
 
+				const participantName = require.participant_name.map((name,index)=>{
+					console.log(name,index,"=======");
+					return(
+						<span className="xi-participant-name" key={index}>{name}</span>
+					)
+				})
+
 				return(
 					<Card 
 						className="mt20" title={title} bordered={true} 
@@ -220,6 +256,9 @@ const ProjectMainListPage = React.createClass({
 						onMouseOut={_this.onMouseOut.bind(null,refName)} 
 						key={index}>
 			        		<span className="xui-project-description">{require.name}</span>
+			        		<div className="xui-project-participant">
+			        			{participantName}
+			        		</div>
 			        		<span ref={refName} className="xui-require-title" style={{display: 'none'}}>
 			        			<RequireDetailDialog requireDetail={require}/>
 			        			<Popover 
@@ -252,6 +291,13 @@ const ProjectMainListPage = React.createClass({
 					</div>
 				);
 
+				const participantName = require.participant_name.map((name,index)=>{
+					console.log(name,index,"=======");
+					return(
+						<span className="xi-participant-name" key={index}>{name}</span>
+					)
+				})
+
 				return(
 					<Card 
 						className="mt20" title={title} bordered={true} 
@@ -260,6 +306,9 @@ const ProjectMainListPage = React.createClass({
 						onMouseOut={_this.onMouseOut.bind(null,refName)} 
 						key={index}>
 			        		<span className="xui-project-description">{require.name}</span>
+			        		<div className="xui-project-participant">
+			        			{participantName}
+			        		</div>
 			        		<span ref={refName} className="xui-require-title" style={{display: 'none'}}>
 			        			<RequireDetailDialog requireDetail={require}/>
 			        			<Popover 
@@ -282,6 +331,13 @@ const ProjectMainListPage = React.createClass({
 				const status = require.status
 				const requireId = require.id
 
+				const participantName = require.participant_name.map((name,index)=>{
+					console.log(name,index,"=======");
+					return(
+						<span className="xi-participant-name" key={index}>{name}</span>
+					)
+				})
+
 				return(
 					<Card 
 						className="mt20" title={title} bordered={true} 
@@ -290,6 +346,9 @@ const ProjectMainListPage = React.createClass({
 						onMouseOut={_this.onMouseOut.bind(null,refName)} 
 						key={index}>
 			        		<span className="xui-project-description">{require.name}</span>
+			        		<div className="xui-project-participant">
+			        			{participantName}
+			        		</div>
 			        		<span ref={refName} className="xui-require-title" style={{display: 'none'}}>
 			        			<RequireDetailDialog requireDetail={require}/>
 			        		</span>

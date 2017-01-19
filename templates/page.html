@@ -28,13 +28,13 @@
                         <span class="glyphicon glyphicon-user"></span> {{ user.first_name }} <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="javascript:void(0);" class="xa-editCurrentUser">编辑</a></li>
+                        <li><a href="javascript:void(0);" data-target="#editMyMessage" role="button" data-toggle="modal" class="xa-editCurrentUser">编辑</a></li>
                         <li class="divider"></li>
                         <li><a href="/account/logout/">退出</a></li>
                     </ul>
                 </div>
                 {% if first_nav == "project" %}
-                <button data-target="#myModal" role="button" data-toggle="modal" class="navbar-btn btn-default btn navbar-right xa-addProject">
+                <button data-target="#addProjectModal" role="button" data-toggle="modal" class="navbar-btn btn-default btn navbar-right xa-addProject">
                     <span class="glyphicon glyphicon-plus"></span>
                     添加项目
                 </button>
@@ -51,7 +51,7 @@
 </div>
 
 <!--创建项目弹窗-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="edit_salesLabel" aria-hidden="true">
+<div class="modal fade" id="addProjectModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">   
             <div class="modal-header">    
@@ -80,6 +80,49 @@
             </div>    
             <div class="modal-footer">    
                 <button class="btn btn-success" id="change_password">完成</button>   
+            </div>  
+        </div>
+    </div>
+</div>
+
+<!--编辑个人信息-->
+<div class="modal fade" id="editMyMessage" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">   
+            <div class="modal-header">    
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true">×</span>
+                </button>    
+                <h3 class="modal-title">编辑用户</h3>   
+            </div>    
+            <div class="modal-body">    
+                <form class="form-horizontal">     
+                    <div class="form-group">      
+                        <label for="project-name-input" class="col-sm-2 control-label xui-validate-star">登录名</label>      
+                        <div class="col-sm-10">       
+                            <input id="project-name-input" name="name" class="form-control" data-validate="required" type="text">       
+                            <div class="errorHint"></div>      
+                        </div>     
+                    </div>
+                    <div class="form-group">      
+                        <label for="project-name-input" class="col-sm-2 control-label xui-validate-star">用户名</label>      
+                        <div class="col-sm-10">       
+                            <input id="project-name-input" name="name" class="form-control" data-validate="required" type="text">       
+                            <div class="errorHint"></div>      
+                        </div>     
+                    </div>
+                    <div class="form-group">      
+                        <label for="project-name-input" class="col-sm-2 control-label xui-validate-star">密码</label>      
+                        <div class="col-sm-10">       
+                            <input id="project-name-input" name="name" class="form-control" data-validate="required" type="text">       
+                            <div class="errorHint"></div>      
+                        </div>     
+                    </div>      
+     
+                </form>
+            </div>    
+            <div class="modal-footer">    
+                <button class="btn btn-success" id="edit_account">完成</button>   
             </div>  
         </div>
     </div>

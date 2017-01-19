@@ -76,7 +76,8 @@ def add_require(request):
             project_id = project_id,
             name= name,
             remark= remark,
-            creator= acount_name
+            creator= acount_name,
+            creator_id = request.user.id
         )
     except Exception, e:
         print e
