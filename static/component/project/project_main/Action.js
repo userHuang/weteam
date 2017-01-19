@@ -50,7 +50,14 @@ var Action = {
                 console.log('create_fail');
             }
         });
-	}
+	},
+
+    showModal() {
+        Dispatcher.dispatch({
+            actionType: Constant.PROJECT_MAIN_SHOW_MODAL,
+            data: {}
+        });
+    },
 };
 
 module.exports = Action;

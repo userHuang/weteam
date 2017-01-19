@@ -49,3 +49,19 @@
     color: #9c594e;
     font-size: 14px;
 }
+
+.xui-tiaozhuan-btn{
+    display: block;
+}
+
+.xui-tiaozhuan-btn:hover{
+    color: #000;
+}
+
+.ant-modal{
+    width: 700px !important;
+}
+
+.ant-modal-body{
+    min-height: 150px;
+}

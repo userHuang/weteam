@@ -7,10 +7,12 @@ const _ = require('underscore');
 const Store = require('./Store');
 const Constant = require('./Constant');
 const Action = require('./Action');
+const RequireDetailDialog = require('./RequireDetailDialog.react');
 require('./style.css');
 require('./weteam.css');
 
 import {  Card, Col, Row } from 'antd';
+import { Popover, Button } from 'antd';
 
 const ProjectMainListPage = React.createClass({
 	getInitialState() {
@@ -34,10 +36,7 @@ const ProjectMainListPage = React.createClass({
 	},
 
 	onMouseOver(refName) {
-		console.log("======");
 		var divClose = this.refs[refName];
-		console.log(divClose,"++++++++++++");
-		console.log(ReactDOM.findDOMNode(divClose),"-------");
 		ReactDOM.findDOMNode(divClose).style.display = "block";
 	},
 
@@ -47,32 +46,51 @@ const ProjectMainListPage = React.createClass({
 	},
 
 	changeStatus(status, requireId) {
-		console.log(requireId,"=======");
 		const projectId = window.projectId;
+		// console.log(status,requireId,projectId,"=======");
 		Action.changeStatus(projectId, requireId, status);
+		console.log(ReactDOM.findDOMNode(this.refs.popver),"=========")
+		this.setState({
+	    	visible: false,
+	    });
 	},
+
+	handleVisibleChange(visible) {
+	    this.setState({ visible });
+  	},
 
 	render() {
 		var _this = this;
 		var requirements = this.state.requirements;
-		console.log(requirements,"=========");
 		var todoRequires = requirements['todo_requires'];
 		var willRequires = requirements['will_requires'];
 		var hasRequires = requirements['has_requires'];
 		var willTests = requirements['will_tests'];
 		var hasTests = requirements['has_tests'];
 		var completeRequires = requirements['complete_requires'];
-		console.log(requirements,"=========");
 		var todoRequiresRow = [];
 		var willRequiresRow = [];
 		var hasRequiresRow = [];
 		var willTestsRow = [];
 		var hasTestsRow = [];
 		var completeRequiresRow = [];
+
 		if(todoRequires){
 			todoRequiresRow = todoRequires.map((require, index) => {
 				const title = '需求 '+ require.id;
 				const refName = 'require_' + require.id;
+				const status = require.status
+				const requireId = require.id
+				const content = (
+			  		<div>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, -1, requireId)}>TODO</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 0, requireId)}>待开发</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 1, requireId)}>开发</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 2, requireId)}>待测试</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 3, requireId)}>测试</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 4, requireId)}>已完成</a>
+					</div>
+				);
 
 				return(
 					<Card 
@@ -83,17 +101,36 @@ const ProjectMainListPage = React.createClass({
 						key={index}>
 			        		<span className="xui-project-description">{require.name}</span>
 			        		<span ref={refName} className="xui-require-title" style={{display: 'none'}}>
+				        		<RequireDetailDialog requireDetail={require}/>
+				        		<Popover 
+			        				ref="popver" className="mr10" placement="rightTop" 
+			        				content={content} trigger="click" 
+			        			>
+							        <a className="glyphicon glyphicon-fast-forward mr10" title="跳转"></a>
+						      	</Popover>
 			        			<a className="glyphicon glyphicon-arrow-right" title="前进" onClick={_this.changeStatus.bind(null,require.status,require.id)}></a>
 			        		</span>
 			        </Card>
 				)
 			});
 		}
-
+		console.log(_this.state.visible,"---------")
 		if(willRequires){
 			willRequiresRow = willRequires.map((require, index) => {
 				const title = '需求 '+ require.id;
 				const refName = 'require_' + require.id;
+				const status = require.status
+				const requireId = require.id
+				const content = (
+			  		<div>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, -1, requireId)}>TODO</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 0, requireId)}>待开发</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 1, requireId)}>开发</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 2, requireId)}>待测试</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 3, requireId)}>测试</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 4, requireId)}>已完成</a>
+					</div>
+				);
 
 				return(
 					<Card 
@@ -104,6 +141,13 @@ const ProjectMainListPage = React.createClass({
 						key={index}>
 			        		<span className="xui-project-description">{require.name}</span>
 			        		<span ref={refName} className="xui-require-title" style={{display: 'none'}}>
+			        			<RequireDetailDialog requireDetail={require}/>
+			        			<Popover 
+			        				ref="popver" className="mr10" placement="rightTop" 
+			        				content={content} trigger="click" 
+			        			>
+							        <a className="glyphicon glyphicon-fast-forward mr10" title="跳转"></a>
+						      	</Popover>
 			        			<a className="glyphicon glyphicon-arrow-right" title="前进" onClick={_this.changeStatus.bind(null,require.status,require.id)}></a>
 			        		</span>
 			        </Card>
@@ -115,6 +159,18 @@ const ProjectMainListPage = React.createClass({
 			hasRequiresRow = hasRequires.map((require, index) => {
 				const title = '需求 '+ require.id;
 				const refName = 'require_' + require.id;
+				const status = require.status
+				const requireId = require.id
+				const content = (
+			  		<div>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, -1, requireId)}>TODO</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 0, requireId)}>待开发</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 1, requireId)}>开发</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 2, requireId)}>待测试</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 3, requireId)}>测试</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 4, requireId)}>已完成</a>
+					</div>
+				);
 
 				return(
 					<Card 
@@ -125,6 +181,13 @@ const ProjectMainListPage = React.createClass({
 						key={index}>
 			        		<span className="xui-project-description">{require.name}</span>
 			        		<span ref={refName} className="xui-require-title" style={{display: 'none'}}>
+			        			<RequireDetailDialog requireDetail={require}/>
+			        			<Popover 
+			        				ref="popver" className="mr10" placement="rightTop" 
+			        				content={content} trigger="click" 
+			        			>
+							        <a className="glyphicon glyphicon-fast-forward mr10" title="跳转"></a>
+						      	</Popover>
 			        			<a className="glyphicon glyphicon-arrow-right" title="前进" onClick={_this.changeStatus.bind(null,require.status,require.id)}></a>
 			        		</span>
 			        </Card>
@@ -136,6 +199,18 @@ const ProjectMainListPage = React.createClass({
 			willTestsRow = willTests.map((require, index) => {
 				const title = '需求 '+ require.id;
 				const refName = 'require_' + require.id;
+				const status = require.status
+				const requireId = require.id
+				const content = (
+			  		<div>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, -1, requireId)}>TODO</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 0, requireId)}>待开发</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 1, requireId)}>开发</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 2, requireId)}>待测试</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 3, requireId)}>测试</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 4, requireId)}>已完成</a>
+					</div>
+				);
 
 				return(
 					<Card 
@@ -146,6 +221,13 @@ const ProjectMainListPage = React.createClass({
 						key={index}>
 			        		<span className="xui-project-description">{require.name}</span>
 			        		<span ref={refName} className="xui-require-title" style={{display: 'none'}}>
+			        			<RequireDetailDialog requireDetail={require}/>
+			        			<Popover 
+			        				ref="popver" className="mr10" placement="rightTop" 
+			        				content={content} trigger="click" 
+			        			>
+							        <a className="glyphicon glyphicon-fast-forward mr10" title="跳转"></a>
+						      	</Popover>
 			        			<a className="glyphicon glyphicon-arrow-right" title="前进" onClick={_this.changeStatus.bind(null,require.status,require.id)}></a>
 			        		</span>
 			        </Card>
@@ -157,6 +239,18 @@ const ProjectMainListPage = React.createClass({
 			hasTestsRow = hasTests.map((require, index) => {
 				const title = '需求 '+ require.id;
 				const refName = 'require_' + require.id;
+				const status = require.status
+				const requireId = require.id
+				const content = (
+			  		<div>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, -1, requireId)}>TODO</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 0, requireId)}>待开发</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 1, requireId)}>开发</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 2, requireId)}>待测试</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 3, requireId)}>测试</a>
+				    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 4, requireId)}>已完成</a>
+					</div>
+				);
 
 				return(
 					<Card 
@@ -167,6 +261,13 @@ const ProjectMainListPage = React.createClass({
 						key={index}>
 			        		<span className="xui-project-description">{require.name}</span>
 			        		<span ref={refName} className="xui-require-title" style={{display: 'none'}}>
+			        			<RequireDetailDialog requireDetail={require}/>
+			        			<Popover 
+			        				ref="popver" className="mr10" placement="rightTop" 
+			        				content={content} trigger="click" 
+			        			>
+							        <a className="glyphicon glyphicon-fast-forward mr10" title="跳转"></a>
+						      	</Popover>
 			        			<a className="glyphicon glyphicon-arrow-right" title="前进" onClick={_this.changeStatus.bind(null,require.status,require.id)}></a>
 			        		</span>
 			        </Card>
@@ -178,13 +279,20 @@ const ProjectMainListPage = React.createClass({
 			completeRequiresRow = completeRequires.map((require, index) => {
 				const title = '需求 '+ require.id;
 				const refName = 'require_' + require.id;
+				const status = require.status
+				const requireId = require.id
 
 				return(
 					<Card 
 						className="mt20" title={title} bordered={true} 
 						style={{width: '95%',margin: '0 auto'}}
+						onMouseOver = {_this.onMouseOver.bind(null,refName)} 
+						onMouseOut={_this.onMouseOut.bind(null,refName)} 
 						key={index}>
 			        		<span className="xui-project-description">{require.name}</span>
+			        		<span ref={refName} className="xui-require-title" style={{display: 'none'}}>
+			        			<RequireDetailDialog requireDetail={require}/>
+			        		</span>
 			        </Card>
 				)
 			});
@@ -237,7 +345,7 @@ const ProjectMainListPage = React.createClass({
 						<div className="xui-kanban-column xa-kanban-column" data-id="434" data-isbuffer="false" style={{height: '580px', overflowY: 'auto'}}>  
 						    <div className="xui-inner-header clearfix">   
 						        <div className="fl">
-						            <span className="xa-columnTitle">测试  </span> · (<span className="xa-taskCount">{hasTestsRow.length}</span>/<span className="xa-wipCount">已完成</span>)
+						            <span className="xa-columnTitle">测试  </span> · (<span className="xa-taskCount">{hasTestsRow.length}</span>/<span className="xa-wipCount">10</span>)
 						        </div>     
 						    </div>  
 						    <div className="xui-kanban-taskContainer " style={{height: '517px'}}> 
@@ -247,7 +355,7 @@ const ProjectMainListPage = React.createClass({
 						<div className="xui-kanban-column xa-kanban-column" data-id="434" data-isbuffer="false" style={{height: '580px', overflowY: 'auto'}}>  
 						    <div className="xui-inner-header clearfix">   
 						        <div className="fl">
-						            <span className="xa-columnTitle">已完成  </span> · (<span className="xa-taskCount">1</span>/<span className="xa-wipCount">10</span>)
+						            <span className="xa-columnTitle">已完成  </span> · (<span className="xa-taskCount">{completeRequiresRow.length}</span>/<span className="xa-wipCount">已完成</span>)
 						        </div>     
 						    </div>  
 						    <div className="xui-kanban-taskContainer " style={{height: '517px'}}> 

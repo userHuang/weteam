@@ -16,7 +16,8 @@ var SpecialPostageStore = StoreUtil.createStore(Dispatcher, {
 
 	init() {
 		this.data = {
-			'requirements': []
+			'requirements': [],
+			'visible': false
 		}
 	},
 
