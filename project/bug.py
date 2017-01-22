@@ -14,68 +14,70 @@ from core.jsonresponse import create_response
 import models as project_models
 
 @login_required
-def require_list(request):
+def bug_list(request):
     """
     需求列表
     """
     jsons = {'items':[]}
     project_id = request.GET.get('project_id', -1)
-    # projects = project_models.Project.objects.filter(is_deleted=False)
-    # project_infos = []
-    # if projects:
-    #     project_infos = [{
-    #         'id': project.id,
-    #         'name': project.name,
-    #         'description': project.description,
-    #         'create_time': project.created_at.strftime("%Y-%m-%d %H:%M")
-    #     }for project in projects]
 
-    # jsons['items'].append(('project_infos', json.dumps(project_infos)))
     c = RequestContext(request, {
         'jsons': jsons,
         'project_id': project_id,
-        'first_nav': 'require'
+        'first_nav': 'bug'
     })
-    return render_to_response('requirement/require_list.html', c)
+    return render_to_response('bug/bug_list.html', c)
 
 
-def get_require(request):
+def get_bug(request):
     """
     获取需求
     """
     project_id = request.GET.get('project_id', -1)
     users = User.objects.all()
     user_id2name = {user.id:user.first_name for user in users}
-    requirements = project_models.Requirement.objects.filter(project_id=project_id, require_type=0).order_by('-id')
-    requires = []
-    for requirement in requirements:
+    bugs = project_models.Requirement.objects.filter(project_id=project_id, require_type=1).order_by('-id')
+    # require_bugs = []
+    # if bugs:
+    #     require_bugs = [{
+    #         'id': bug.id,
+    #         'status': requirement.status,
+    #         'name': bug.name,
+    #         'creator': bug.creator,
+    #         'participant': bug.creator if not bug.participant else ('%s,%s')%(bug.creator,bug.participant),
+    #         'created_at': '' if not bug.created_at else bug.created_at.strftime("%Y-%m-%d %H:%M"),
+    #         'end_at': '-----' if not bug.end_at else bug.end_at.strftime("%Y-%m-%d %H:%M")
+    #     }for bug in bugs]
+    # print require_bugs,"========wwww===="
+
+    require_bugs = []
+    for bug in bugs:
         participant_name = []
-        participant_name.append(requirement.creator)
-        participants =  [] if not requirement.participant else requirement.participant.split(',')
+        participant_name.append(bug.creator)
+        participants =  [] if not bug.participant else bug.participant.split(',')
         for participant in participants:
-            if participant and int(participant) in user_id2name and participant != requirement.creator_id:
+            if participant and int(participant) in user_id2name and participant != bug.creator_id:
                 participant = int(participant)
                 participant_name.append(user_id2name[participant])
 
-        requires.append({
-            'id': requirement.id,
-            'status': requirement.status,
-            'require_type': requirement.require_type,
-            'name': requirement.name,
-            'remark': requirement.remark,
-            'creator': requirement.creator,
+        require_bugs.append({
+            'id': bug.id,
+            'status': bug.status,
+            'require_type': bug.require_type,
+            'name': bug.name,
+            'remark': bug.remark,
+            'creator': bug.creator,
             'participant_name': ','.join(participant_name),
-            'created_at': '' if not requirement.created_at else requirement.created_at.strftime("%Y-%m-%d %H:%M"),
-            'end_at': '-----' if not requirement.end_at else requirement.end_at.strftime("%Y-%m-%d %H:%M")
+            'created_at': '' if not bug.created_at else bug.created_at.strftime("%Y-%m-%d %H:%M"),
+            'end_at': '-----' if not bug.end_at else bug.end_at.strftime("%Y-%m-%d %H:%M")
         })
-
     response = create_response(200)
     response.data = {
-        'requirements': json.dumps(requires)
+        'require_bugs': json.dumps(require_bugs)
     }
     return response.get_response()
 
-def add_require(request):
+def add_bug(request):
     """
     添加需求
     """
@@ -91,7 +93,7 @@ def add_require(request):
             remark= remark,
             creator= acount_name,
             creator_id = request.user.id,
-            require_type = 0
+            require_type = 1
         )
     except Exception, e:
         print e

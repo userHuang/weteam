@@ -6,6 +6,7 @@ import project
 import project_main
 import members
 import requirement
+import bug
 
 urlpatterns = patterns('',
     url(r'^$', project.project_list),
@@ -15,9 +16,13 @@ urlpatterns = patterns('',
     url(r'^get_require_details/', project_main.get_main),
     url(r'^update_status/', project_main.update_status),
 
-    url(r'members/', members.members),
+    url(r'^members/', members.members),
 
-    url(r'require_list/', requirement.require_list),
-    url(r'get_require/', requirement.get_require),
-    url(r'add_require/', requirement.add_require),
+    url(r'^require_list/', requirement.require_list),
+    url(r'^get_require/', requirement.get_require),
+    url(r'^add_require/', requirement.add_require),
+
+    url(r'^bug/', bug.bug_list),
+    url(r'^get_bug/', bug.get_bug),
+    url(r'^add_bug/', bug.add_bug),
 )

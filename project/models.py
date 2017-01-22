@@ -41,6 +41,7 @@ class Requirement(models.Model):
     participant = models.CharField(max_length=32, default="") #参与人 user_id
     remark = models.TextField() #备注
     status = models.IntegerField(default=0) # {0: TODO, 1:待开发, 2:开发, 3:待测试, 4:测试, 5:已完成}
+    require_type = models.IntegerField(default=0) # {0:需求, 1：bug}
     created_at = models.DateTimeField(auto_now_add=True) #创建时间
     updated_at = models.DateTimeField(auto_now_add=True) #更新时间
     end_at = models.DateTimeField(null=True) #结束时间

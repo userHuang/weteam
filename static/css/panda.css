@@ -126,10 +126,10 @@ html, body {
  */
 .xui-contentPanel {
 	background-color: #2F4050;
-	min-height: 1500px;
+	min-height: 680px;
 }
 .xui-container {
-	min-height: 1500px;
+	min-height: 680px;
 	-webkit-transition: all 0.5s ease 0s;
 	-moz-transition: all 0.5s ease 0s;
 	transition: all 0.5s ease 0s;

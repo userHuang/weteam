@@ -67,6 +67,7 @@ const ProjectMainListPage = React.createClass({
 				var requires = [];
 				var requiresRow = [];
 				var requireTitle = '';
+				var requireClassName = '';
 				var maxHasDo = 0;
 
 				if(i == 0){
@@ -98,7 +99,8 @@ const ProjectMainListPage = React.createClass({
 				console.log(i,requires,"===++++++======");
 				if(requires){
 					requiresRow = requires.map((require, index) => {
-						const title = '需求 '+ require.id;
+						const title = require.require_type === 0? '需求 '+ require.id: 'BUG '+ require.id;
+						requireClassName = require.require_type === 0?'mt20 xui-require': 'mt20 xui-bug';
 						const refName = 'require_' + require.id;
 						const status = require.status
 						const requireId = require.id
@@ -123,7 +125,7 @@ const ProjectMainListPage = React.createClass({
 							//已完成
 							return(
 			                    <Card 
-			                        className="mt20" title={title} bordered={true} 
+			                        className={requireClassName} title={title} bordered={true} 
 			                        style={{width: '95%',margin: '0 auto'}}
 			                        onMouseOver = {_this.onMouseOver.bind(null,refName)} 
 			                        onMouseOut={_this.onMouseOut.bind(null,refName)} 
@@ -140,7 +142,7 @@ const ProjectMainListPage = React.createClass({
 						}else{
 							return(
 								<Card 
-									className="mt20" title={title} bordered={true} 
+									className={requireClassName} title={title} bordered={true} 
 									style={{width: '95%',margin: '0 auto'}}
 									onMouseOver = {_this.onMouseOver.bind(null,refName)} 
 									onMouseOut={_this.onMouseOut.bind(null,refName)} 
@@ -172,7 +174,7 @@ const ProjectMainListPage = React.createClass({
 					            <span className="xa-columnTitle">{requireTitle}</span> · (<span className="xa-taskCount">{requiresRow.length}</span>/<span className="xa-wipCount">{maxHasDo}</span>)
 					        </div>     
 					    </div>  
-					    <div className="xui-kanban-taskContainer " style={{height: '517px'}}> 
+					    <div className='xui-kanban-taskContainer' style={{height: '517px'}}> 
 				         	{requiresRow} 
 					    </div>
 					</div>

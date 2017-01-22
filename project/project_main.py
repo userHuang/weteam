@@ -52,6 +52,7 @@ def get_project_data(requirements, request, user_id2name):
 		requires.append({
 			'id': requirement.id,
 			'status': requirement.status,
+			'require_type': requirement.require_type,
 			'name': requirement.name,
 			'remark': requirement.remark,
 			'creator': requirement.creator,
@@ -122,7 +123,7 @@ def update_status(request):
 	participants = project_models.Requirement.objects.get(id=require_id).participant
 	creator_id = project_models.Requirement.objects.get(id=require_id).creator_id
 	date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-	
+
 	if creator_id != user_id:
 		if str(user_id) not in participants:
 			if participants:

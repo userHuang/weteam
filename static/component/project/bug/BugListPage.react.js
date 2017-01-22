@@ -11,7 +11,7 @@ require('./style.css');
 
 import { Table, Input, Icon, Button, Popconfirm } from 'antd';
 
-const RequireListPage = React.createClass({
+const BugListPage = React.createClass({
 	getInitialState() {
 		Store.addListener(this.onChangeStore);
 		return Store.getData();
@@ -21,25 +21,19 @@ const RequireListPage = React.createClass({
 		this.setState(Store.getData());
 	},
 
-	onChangeValue(index, event) {
-		const property = event.target.getAttribute('name');
-		const value = event.target.value;
-		Action.updateSpecialValues(index, property, value);
-	},
-
 	componentWillMount() {
 		const projectId = window.projectId;
-		Action.getRequire(projectId);
+		Action.getBug(projectId);
 	},
 
 	render() {
-		const requirements = this.state.requirements;
+		const requireBugs = this.state.requireBugs;
 		const columns = [{
 			title: 'ID',
 			dataIndex: 'id',
 			key: 'id',
 		},{
-			title: '需求',
+			title: 'bug',
 			dataIndex: 'name',
 			key: 'name',
 			width: 300,
@@ -84,10 +78,10 @@ const RequireListPage = React.createClass({
 		return (
 			<div>
 				<AddRequireDialog />
-				<Table columns={columns} dataSource={requirements} pagination={{pageSize: 10}} className="mt10"/>
+				<Table columns={columns} dataSource={requireBugs} pagination={{pageSize: 10}} className="mt10"/>
 		  	</div>
 		)
 	}
 })
 
-module.exports = RequireListPage;
+module.exports = BugListPage;
