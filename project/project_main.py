@@ -45,11 +45,8 @@ def get_project_data(requirements, request, user_id2name):
 		participant_name.append(requirement.creator)
 		participants =  [] if not requirement.participant else requirement.participant.split(',')
 		for participant in participants:
-			print participant,"======="
-			print user_id2name,"======="
 			if participant and int(participant) in user_id2name and participant != requirement.creator_id:
 				participant = int(participant)
-				print user_id2name[participant],"++++++++++"
 				participant_name.append(user_id2name[participant])
 
 		requires.append({
@@ -70,41 +67,47 @@ def get_main(request):
 	"""
 	print "=================="
 	project_id = request.GET.get('project_id', -1)
-	requirements = project_models.Requirement.objects.filter(project_id=project_id)
+	requirements = project_models.Requirement.objects.filter(project_id=project_id).order_by('updated_at')
 	users = User.objects.all()
 	user_id2name = {user.id:user.first_name for user in users}
 	requires = {}
+	requires = []
 	if requirements:
 		#todo
 		todo_requirements = requirements.filter(status=0)
 		todo_requires = get_project_data(todo_requirements, request, user_id2name)
-		requires['todo_requires'] =  todo_requires
+		# requires['todo_requires'] =  todo_requires
+		requires.append({'todo_requires': todo_requires})
 
 		#待开发
 		will_requirements = requirements.filter(status=1)
 		will_requires = get_project_data(will_requirements, request, user_id2name)
-		requires['will_requires'] =  will_requires
+		# requires['will_requires'] =  will_requires
+		requires.append({'will_requires': will_requires})
 
 		#开发
 		has_requirements = requirements.filter(status=2)
 		has_requires = get_project_data(has_requirements, request, user_id2name)
-		requires['has_requires'] = has_requires
+		# requires['has_requires'] = has_requires
+		requires.append({'has_requires': has_requires})
 
 		#待测试
 		will_test_requires = requirements.filter(status=3)
 		will_tests = get_project_data(will_test_requires, request, user_id2name)
-		requires['will_tests'] =  will_tests
+		# requires['will_tests'] =  will_tests
+		requires.append({'will_tests': will_tests})
 
 		#测试
 		has_test_requires = requirements.filter(status=4)
 		has_tests = get_project_data(has_test_requires, request, user_id2name)
-		requires['has_tests'] = has_tests
+		# requires['has_tests'] = has_tests
+		requires.append({'has_tests': has_tests})
 
 		#已完成
 		complete_requirements = requirements.filter(status=5)
 		complete_requires = get_project_data(complete_requirements, request, user_id2name)
-		requires['complete_requires'] = complete_requires
-
+		# requires['complete_requires'] = complete_requires
+		requires.append({'complete_requires': complete_requires})
 	response = create_response(200)
 	response.data = {
 		'requirements': json.dumps(requires)
@@ -117,20 +120,24 @@ def update_status(request):
 	require_id = request.POST.get('require_id', -1)
 	status = int(request.POST.get('status', 0))
 	participants = project_models.Requirement.objects.get(id=require_id).participant
+	creator_id = project_models.Requirement.objects.get(id=require_id).creator_id
+	date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 	
-	if str(user_id) not in participants:
-		if participants:
-			participants = participants + ',' + str(user_id)
+	if creator_id != user_id:
+		if str(user_id) not in participants:
+			if participants:
+				participants = participants + ',' + str(user_id)
+			else:
+				participants = participants + str(user_id)
 		else:
-			participants = participants + str(user_id)
+			participants = participants
 	else:
 		participants = participants
 
 	if status == 4:
-		date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-		project_models.Requirement.objects.filter(id=require_id).update(status=status+1, end_at=date_now, participant=participants)
+		project_models.Requirement.objects.filter(id=require_id).update(status=status+1, end_at=date_now, participant=participants, updated_at=date_now)
 	else:
-		project_models.Requirement.objects.filter(id=require_id).update(status=status+1, participant=participants)
+		project_models.Requirement.objects.filter(id=require_id).update(status=status+1, participant=participants, updated_at=date_now)
 
 	response = create_response(200)
 	return response.get_response()
