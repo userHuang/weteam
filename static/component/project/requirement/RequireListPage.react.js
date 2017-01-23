@@ -9,7 +9,7 @@ const Action = require('./Action');
 const AddRequireDialog = require('./AddRequireDialog.react');
 require('./style.css');
 
-import { Table, Input, Icon, Button, Popconfirm } from 'antd';
+import { Table, Input, Icon, Button, Popconfirm, message } from 'antd';
 
 const RequireListPage = React.createClass({
 	getInitialState() {
@@ -21,19 +21,25 @@ const RequireListPage = React.createClass({
 		this.setState(Store.getData());
 	},
 
-	onChangeValue(index, event) {
-		const property = event.target.getAttribute('name');
-		const value = event.target.value;
-		Action.updateSpecialValues(index, property, value);
-	},
-
 	componentWillMount() {
 		const projectId = window.projectId;
 		Action.getRequire(projectId);
 	},
 
+	enterMain(requireId) {
+		console.log(requireId,"========");
+		Action.enterMain(requireId);
+		message.success('Click on Yes.',1.5);
+	},
+
+	onDelete() {
+		message.success('Click on Yes.',1.5);
+	},
+
 	render() {
+		const _this = this;
 		const requirements = this.state.requirements;
+
 		const columns = [{
 			title: 'ID',
 			dataIndex: 'id',
@@ -72,13 +78,18 @@ const RequireListPage = React.createClass({
 			title: 'Action',
 			key: 'action',
 			width: 200,
-			render: (text, record) => (
-				<span>
-					<a href="#" className="ant-dropdown-link">
-						More actions <Icon type="down" />
-					</a>
-				</span>
-			),
+			render: (text, record) => {
+				return(
+					<div>
+						<Popconfirm placement="rightTop" title="确定进入看板？" onConfirm={_this.enterMain.bind(null,record.id)} okText="Yes" cancelText="No">
+							<Button className="mr5">进入看板</Button>
+						</Popconfirm>
+						<Popconfirm placement="rightTop" title="确定删除么？" onConfirm={_this.onDelete} okText="Yes" cancelText="No">
+							<Button>删除</Button>
+						</Popconfirm>
+					</div>
+				)
+			}
 		}];
 
 		return (

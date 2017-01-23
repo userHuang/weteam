@@ -98,3 +98,21 @@ def add_require(request):
     
     response = create_response(200)
     return response.get_response()
+
+def enter_main(request):
+    user_id = request.user.id
+    require_id = request.POST.get('require_id', -1)
+    participants = project_models.Requirement.objects.get(id=require_id).participant
+    creator_id = project_models.Requirement.objects.get(id=require_id).creator_id
+
+    if user_id != creator_id:
+        participant_id = user_id
+    else:
+        participant_id = ''
+        
+    date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    project_models.Requirement.objects.filter(id=require_id).update(status=0, participant=participant_id, updated_at=date_now)
+
+    response = create_response(200)
+    return response.get_response()

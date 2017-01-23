@@ -15,15 +15,9 @@ var SpecialPostageStore = StoreUtil.createStore(Dispatcher, {
 	},
 
 	init() {
+		const projectId = window.projectId;
 		this.data = {
-			'requirements' : [{
-				id: 1,
-				name: 'ceshi',
-				creator: 'qw',
-				participant: 'ere',
-				created_at: '2019-01-10 11:11',
-				end_at: '2019-01-10 11:11'
-			}]
+			'projectId' : projectId
 		};
 	},
 

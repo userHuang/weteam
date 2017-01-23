@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^require_list/', requirement.require_list),
     url(r'^get_require/', requirement.get_require),
     url(r'^add_require/', requirement.add_require),
+    url(r'^enter_main/', requirement.enter_main),
 
     url(r'^bug/', bug.bug_list),
     url(r'^get_bug/', bug.get_bug),

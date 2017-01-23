@@ -5,6 +5,7 @@ var Constant = require('./Constant');
 var Dispatcher = require('../../../../util/dispatcher');
 
 var Action = {
+    //获取需求
 	getRequire(projectId) {
 		$.ajax({
             url:'/project/get_require/',
@@ -14,7 +15,6 @@ var Action = {
             },
             success:function(resp){
                 if(resp.code == 200){
-                    // location.reload();
                     console.log(resp,"===========")
                     Dispatcher.dispatch({
 						actionType: Constant.PROJECT_REQUIREMENT_GET_USERS,
@@ -25,7 +25,7 @@ var Action = {
                 }
             },
             error:function(){
-                console.log('create_fail');
+                console.log('get_require_fail');
             }
         });
 	},
@@ -54,8 +54,8 @@ var Action = {
 		});
 	},
 
+    //添加需求
 	addRequire (name, remark, projectId) {
-		console.log(name, remark,projectId,"======");
 		$.ajax({
             url:'/project/add_require/',
             type:'post',
@@ -70,10 +70,29 @@ var Action = {
                 }
             },
             error:function(){
-                console.log('create_fail');
+                console.log('add_require_fail');
             }
         });
-	}
+	},
+
+    //进入看板
+    enterMain(requireId) {
+        $.ajax({
+            url:'/project/enter_main/',
+            type:'post',
+            data:{
+                'require_id': requireId
+            },
+            success:function(resp){
+                if(resp.code == 200){
+                    Action.getRequire(projectId);
+                }
+            },
+            error:function(){
+                console.log('add_require_fail');
+            }
+        });
+    }
 };
 
 module.exports = Action;
