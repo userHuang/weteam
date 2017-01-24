@@ -16,7 +16,7 @@ import models as project_models
 @login_required
 def bug_list(request):
     """
-    需求列表
+    bug列表
     """
     jsons = {'items':[]}
     project_id = request.GET.get('project_id', -1)
@@ -31,24 +31,12 @@ def bug_list(request):
 
 def get_bug(request):
     """
-    获取需求
+    获取bug
     """
     project_id = request.GET.get('project_id', -1)
     users = User.objects.all()
     user_id2name = {user.id:user.first_name for user in users}
-    bugs = project_models.Requirement.objects.filter(project_id=project_id, require_type=1).order_by('-id')
-    # require_bugs = []
-    # if bugs:
-    #     require_bugs = [{
-    #         'id': bug.id,
-    #         'status': requirement.status,
-    #         'name': bug.name,
-    #         'creator': bug.creator,
-    #         'participant': bug.creator if not bug.participant else ('%s,%s')%(bug.creator,bug.participant),
-    #         'created_at': '' if not bug.created_at else bug.created_at.strftime("%Y-%m-%d %H:%M"),
-    #         'end_at': '-----' if not bug.end_at else bug.end_at.strftime("%Y-%m-%d %H:%M")
-    #     }for bug in bugs]
-    # print require_bugs,"========wwww===="
+    bugs = project_models.Requirement.objects.filter(project_id=project_id, require_type=1, is_deleted=False).order_by('-id')
 
     require_bugs = []
     for bug in bugs:
@@ -79,7 +67,7 @@ def get_bug(request):
 
 def add_bug(request):
     """
-    添加需求
+    添加bug
     """
     name = request.POST.get('name', '')
     remark = request.POST.get('remark', '')

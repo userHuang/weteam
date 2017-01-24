@@ -9,7 +9,7 @@ const Action = require('./Action');
 const AddRequireDialog = require('./AddRequireDialog.react');
 require('./style.css');
 
-import { Table, Input, Icon, Button, Popconfirm } from 'antd';
+import { Table, Input, Icon, Button, Popconfirm, message } from 'antd';
 
 const BugListPage = React.createClass({
 	getInitialState() {
@@ -26,8 +26,20 @@ const BugListPage = React.createClass({
 		Action.getBug(projectId);
 	},
 
+	enterMain(requireId) {
+		const projectId = this.state.projectId;
+		Action.enterMain(requireId,projectId);
+	},
+
+	onDelete(requireId) {
+		const projectId = this.state.projectId;
+		Action.onDelete(requireId,projectId);
+	},
+
 	render() {
+		const _this = this;
 		const requireBugs = this.state.requireBugs;
+
 		const columns = [{
 			title: 'ID',
 			dataIndex: 'id',
@@ -38,7 +50,6 @@ const BugListPage = React.createClass({
 			key: 'name',
 			width: 300,
 			render: (text, record) => {
-				console.log(record.status);
 				var requireNameClass = record.status==5? 'xa-require-complete': 'xa-require-unComplete';
 				return(
 					<span className={requireNameClass}>
@@ -66,13 +77,29 @@ const BugListPage = React.createClass({
 			title: 'Action',
 			key: 'action',
 			width: 200,
-			render: (text, record) => (
-				<span>
-					<a href="#" className="ant-dropdown-link">
-						More actions <Icon type="down" />
-					</a>
-				</span>
-			),
+			render: (text, record) => {
+				if(record.status == -1){
+					return(
+						<div>
+							<Popconfirm placement="rightTop" title="确定进入看板？" onConfirm={_this.enterMain.bind(null,record.id)} okText="Yes" cancelText="No">
+								<Button className="mr5">进入看板</Button>
+							</Popconfirm>
+							<Popconfirm placement="rightTop" title="确定删除么？" onConfirm={_this.onDelete.bind(null,record.id)} okText="Yes" cancelText="No">
+								<Button>删除</Button>
+							</Popconfirm>
+						</div>
+					)
+				}else{
+					return(
+						<div>
+							<Popconfirm placement="rightTop" title="确定删除么？" onConfirm={_this.onDelete.bind(null,record.id)} okText="Yes" cancelText="No">
+								<Button>删除</Button>
+							</Popconfirm>
+						</div>
+					)
+				}
+				
+			}
 		}];
 
 		return (

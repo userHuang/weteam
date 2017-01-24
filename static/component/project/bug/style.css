@@ -50,3 +50,12 @@ textarea{
 .xa-require-complete{
     text-decoration: line-through;
 }
+
+.ant-message{
+    top: 80px;
+}
+
+.ant-message-notice-content{
+    width: 480px;
+    font-size: 16px;
+}

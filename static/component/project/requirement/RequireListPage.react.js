@@ -27,13 +27,13 @@ const RequireListPage = React.createClass({
 	},
 
 	enterMain(requireId) {
-		console.log(requireId,"========");
-		Action.enterMain(requireId);
-		message.success('Click on Yes.',1.5);
+		const projectId = this.state.projectId;
+		Action.enterMain(requireId,projectId);
 	},
 
-	onDelete() {
-		message.success('Click on Yes.',1.5);
+	onDelete(requireId) {
+		const projectId = this.state.projectId;
+		Action.onDelete(requireId,projectId);
 	},
 
 	render() {
@@ -50,7 +50,6 @@ const RequireListPage = React.createClass({
 			key: 'name',
 			width: 300,
 			render: (text, record) => {
-				console.log(record.status);
 				var requireNameClass = record.status==5? 'xa-require-complete': 'xa-require-unComplete';
 				return(
 					<span className={requireNameClass}>
@@ -79,16 +78,27 @@ const RequireListPage = React.createClass({
 			key: 'action',
 			width: 200,
 			render: (text, record) => {
-				return(
-					<div>
-						<Popconfirm placement="rightTop" title="确定进入看板？" onConfirm={_this.enterMain.bind(null,record.id)} okText="Yes" cancelText="No">
-							<Button className="mr5">进入看板</Button>
-						</Popconfirm>
-						<Popconfirm placement="rightTop" title="确定删除么？" onConfirm={_this.onDelete} okText="Yes" cancelText="No">
-							<Button>删除</Button>
-						</Popconfirm>
-					</div>
-				)
+				if(record.status == -1){
+					return(
+						<div>
+							<Popconfirm placement="rightTop" title="确定进入看板？" onConfirm={_this.enterMain.bind(null,record.id)} okText="Yes" cancelText="No">
+								<Button className="mr5">进入看板</Button>
+							</Popconfirm>
+							<Popconfirm placement="rightTop" title="确定删除么？" onConfirm={_this.onDelete.bind(null,record.id)} okText="Yes" cancelText="No">
+								<Button>删除</Button>
+							</Popconfirm>
+						</div>
+					)
+				}else{
+					return(
+						<div>
+							<Popconfirm placement="rightTop" title="确定删除么？" onConfirm={_this.onDelete.bind(null,record.id)} okText="Yes" cancelText="No">
+								<Button>删除</Button>
+							</Popconfirm>
+						</div>
+					)
+				}
+				
 			}
 		}];
 

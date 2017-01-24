@@ -4,9 +4,10 @@ var _ = require('underscore');
 var Constant = require('./Constant');
 var Dispatcher = require('../../../../util/dispatcher');
 
+import { message } from 'antd';
+
 var Action = {
 	getBug(projectId) {
-        console.log("======---------ss--------");
 		$.ajax({
             url:'/project/get_bug/',
             type:'get',
@@ -71,7 +72,51 @@ var Action = {
                 console.log('create_fail');
             }
         });
-	}
+	},
+
+    //进入看板
+    enterMain(requireId, projectId) {
+        $.ajax({
+            url:'/project/enter_main/',
+            type:'post',
+            data:{
+                'require_id': requireId
+            },
+            success:function(resp){
+                if(resp.code == 200){
+                    message.success('进入看板成功', 1.5);
+                    Action.getBug(projectId);
+                }else{
+                    message.error('进入看板失败', 1.5);
+                }
+            },
+            error:function(){
+                console.log('add_require_fail');
+            }
+        });
+    },
+
+    //删除
+    onDelete(requireId, projectId) {
+        $.ajax({
+            url:'/project/delete_require/',
+            type:'post',
+            data:{
+                'require_id': requireId
+            },
+            success:function(resp){
+                if(resp.code == 200){
+                    message.success('删除成功', 1.5);
+                    Action.getBug(projectId);
+                }else{
+                    message.success('删除失败', 1.5);
+                }
+            },
+            error:function(){
+                console.log('add_require_fail');
+            }
+        });
+    }
 };
 
 module.exports = Action;

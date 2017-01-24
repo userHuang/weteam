@@ -66,9 +66,9 @@ def get_main(request):
 	"""
 	获取所有信息
 	"""
-	print "=================="
 	project_id = request.GET.get('project_id', -1)
-	requirements = project_models.Requirement.objects.filter(project_id=project_id).order_by('updated_at')
+	requirements = project_models.Requirement.objects.filter(project_id=project_id, status__gte=0, is_deleted=False).order_by('updated_at')
+
 	users = User.objects.all()
 	user_id2name = {user.id:user.first_name for user in users}
 	requires = {}

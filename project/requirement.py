@@ -46,7 +46,7 @@ def get_require(request):
     project_id = request.GET.get('project_id', -1)
     users = User.objects.all()
     user_id2name = {user.id:user.first_name for user in users}
-    requirements = project_models.Requirement.objects.filter(project_id=project_id, require_type=0).order_by('-id')
+    requirements = project_models.Requirement.objects.filter(project_id=project_id, require_type=0, is_deleted=False).order_by('-id')
     requires = []
     for requirement in requirements:
         participant_name = []
@@ -100,8 +100,11 @@ def add_require(request):
     return response.get_response()
 
 def enter_main(request):
+    """
+    进入看板
+    """
     user_id = request.user.id
-    require_id = request.POST.get('require_id', -1)
+    require_id = int(request.POST.get('require_id', -1))
     participants = project_models.Requirement.objects.get(id=require_id).participant
     creator_id = project_models.Requirement.objects.get(id=require_id).creator_id
 
@@ -113,6 +116,14 @@ def enter_main(request):
     date_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     project_models.Requirement.objects.filter(id=require_id).update(status=0, participant=participant_id, updated_at=date_now)
+
+    response = create_response(200)
+    return response.get_response()
+
+def delete_require(request):
+    require_id = int(request.POST.get('require_id', -1))
+
+    project_models.Requirement.objects.filter(id=require_id).update(is_deleted=True)
 
     response = create_response(200)
     return response.get_response()

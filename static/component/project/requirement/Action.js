@@ -3,6 +3,7 @@
 var _ = require('underscore');
 var Constant = require('./Constant');
 var Dispatcher = require('../../../../util/dispatcher');
+import { message } from 'antd';
 
 var Action = {
     //获取需求
@@ -15,7 +16,6 @@ var Action = {
             },
             success:function(resp){
                 if(resp.code == 200){
-                    console.log(resp,"===========")
                     Dispatcher.dispatch({
 						actionType: Constant.PROJECT_REQUIREMENT_GET_USERS,
 						data: {
@@ -76,7 +76,7 @@ var Action = {
 	},
 
     //进入看板
-    enterMain(requireId) {
+    enterMain(requireId, projectId) {
         $.ajax({
             url:'/project/enter_main/',
             type:'post',
@@ -85,7 +85,32 @@ var Action = {
             },
             success:function(resp){
                 if(resp.code == 200){
+                    message.success('进入看板成功', 1.5);
                     Action.getRequire(projectId);
+                }else{
+                    message.success('进入看板失败', 1.5);
+                }
+            },
+            error:function(){
+                console.log('add_require_fail');
+            }
+        });
+    },
+
+    //删除
+    onDelete(requireId, projectId) {
+        $.ajax({
+            url:'/project/delete_require/',
+            type:'post',
+            data:{
+                'require_id': requireId
+            },
+            success:function(resp){
+                if(resp.code == 200){
+                    message.success('删除成功', 1.5);
+                    Action.getRequire(projectId);
+                }else{
+                    message.error('删除失败', 1.5);
                 }
             },
             error:function(){
