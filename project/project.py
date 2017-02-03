@@ -34,7 +34,8 @@ def project_list(request):
 	jsons['items'].append(('project_infos', json.dumps(project_infos)))
 	c = RequestContext(request, {
 		'jsons': jsons,
-		'first_nav': 'project'
+		'first_nav': 'project',
+		'user_id': request.user.id
 	})
 	return render_to_response('project/new_project.html', c)
 

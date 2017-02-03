@@ -423,6 +423,7 @@
         },
         objUrl = window.URL || window.webkitURL,
         FileInput = function (element, options) {
+            console.log("=============FileInput===========");
             this.$element = $(element);
             if (hasFileAPISupport() || isIE(9)) {
                 this.init(options);
@@ -621,6 +622,7 @@
             });
         },
         submitForm: function () {
+            console.log("=========submitForm=============");
             var self = this, $el = self.$element, files = $el.get(0).files;
             if (files && files.length < self.minFileCount && self.minFileCount > 0) {
                 self.noFilesError({});
@@ -660,6 +662,7 @@
             self.$progress.html(template.repl('{percent}', pct));
         },
         upload: function () {
+            console.log("=========upload=============");
             var self = this, totLen = self.getFileStack().length, params = {},
                 i, outData, len, hasExtraData = !$.isEmptyObject(self.getExtraData());
             if (totLen < self.minFileCount && self.minFileCount > 0) {
@@ -805,6 +808,7 @@
             addCss(self.$container, 'file-input-ajax-new');
         },
         initFileActions: function () {
+            console.log("=========initFileActions=============");
             var self = this;
             self.$preview.find('.kv-file-remove').each(function () {
                 var $el = $(this), $frame = $el.closest('.file-preview-frame'),
@@ -1128,6 +1132,7 @@
             });
         },
         initXhr: function (xhrobj, factor) {
+            console.log("=========initXhr=============");
             var self = this;
             if (xhrobj.upload) {
                 xhrobj.upload.addEventListener('progress', function (event) {
@@ -1142,6 +1147,7 @@
             return xhrobj;
         },
         ajaxSubmit: function (fnBefore, fnSuccess, fnComplete, fnError) {
+            console.log("++++++++ajaxSubmit+++++++++");
             var self = this, settings;
             self.uploadExtra();
             settings = $.extend({
@@ -1164,6 +1170,7 @@
             self.ajaxRequests.push($.ajax(settings));
         },
         initUploadSuccess: function (out, $thumb, allFiles) {
+            console.log("=========initUploadSuccess=============");
             var self = this, append, data, index, $newThumb, content, config, tags;
             if (typeof out !== 'object' || $.isEmptyObject(out)) {
                 return;
@@ -1198,6 +1205,7 @@
             }
         },
         uploadSingle: function (i, files, allFiles) {
+            console.log("=========uploadSingle=============");
             var self = this, total = self.getFileStack().length, formdata = new FormData(), outData,
                 previewId = self.previewInitId + "-" + i, $thumb = $('#' + previewId + ':not(.file-preview-initial)'),
                 pct, chkComplete, $btnUpload = $thumb.find('.kv-file-upload'), $btnDelete = $thumb.find('.kv-file-remove'),
@@ -1262,6 +1270,7 @@
                 }
             };
             fnSuccess = function (data, textStatus, jqXHR) {
+                console.log("=========fnSuccess=============");
                 outData = self.getOutData(jqXHR, data);
                 params = $.extend(params, outData);
                 setTimeout(function () {
@@ -1305,6 +1314,7 @@
             self.ajaxSubmit(fnBefore, fnSuccess, fnComplete, fnError);
         },
         uploadBatch: function () {
+            console.log("=========uploadBatch=============");
             var self = this, files = self.filestack, total = files.length, config,
                 hasPostData = self.filestack.length > 0 || !$.isEmptyObject(self.uploadExtraData),
                 setIndicator, setAllUploaded, enableActions, fnBefore, fnSuccess, fnComplete, fnError,
@@ -1350,6 +1360,7 @@
                 }
             };
             fnSuccess = function (data, textStatus, jqXHR) {
+                console.log("=========fnSuccess=============");
                 var outData = self.getOutData(jqXHR, data),
                     keys = isEmpty(data.errorkeys) ? [] : data.errorkeys;
                 if (data.error === undefined || isEmpty(data.error)) {
@@ -1391,6 +1402,7 @@
                 }
             };
             fnComplete = function () {
+                console.log("=========fnComplete=============");
                 self.setProgress(100);
                 self.unlock();
                 self.raise('filebatchuploadcomplete', [self.filestack, self.getExtraData()]);
@@ -1422,6 +1434,7 @@
             self.ajaxSubmit(fnBefore, fnSuccess, fnComplete, fnError);
         },
         uploadExtraOnly: function () {
+            console.log("=========uploadExtraOnly=============");
             var self = this, params = {}, fnBefore, fnSuccess, fnComplete, fnError;
             self.formdata = new FormData();
             if (self.abort(params)) {
@@ -1577,6 +1590,7 @@
             });
         },
         previewFile: function (file, theFile, previewId, data) {
+            console.log("=========previewFile=============");
             if (!this.showPreview) {
                 return;
             }
@@ -1633,6 +1647,7 @@
             });
         },
         readFiles: function (files) {
+            console.log("=========readFiles=============");
             this.reader = new FileReader();
             var self = this, $el = self.$element, $preview = self.$preview, reader = self.reader,
                 $container = self.$previewContainer, $status = self.$previewStatus, msgLoading = self.msgLoading,

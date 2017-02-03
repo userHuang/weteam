@@ -100,28 +100,32 @@
                     <div class="form-group">      
                         <label for="project-name-input" class="col-sm-2 control-label xui-validate-star">登录名</label>      
                         <div class="col-sm-10">       
-                            <input id="project-name-input" name="name" class="form-control" data-validate="required" type="text">       
+                            <input id="username" name="username" class="form-control" data-validate="required" type="text">       
                             <div class="errorHint"></div>      
                         </div>     
                     </div>
                     <div class="form-group">      
                         <label for="project-name-input" class="col-sm-2 control-label xui-validate-star">用户名</label>      
                         <div class="col-sm-10">       
-                            <input id="project-name-input" name="name" class="form-control" data-validate="required" type="text">       
+                            <input id="firstname" name="firstname" class="form-control" data-validate="required" type="text">       
                             <div class="errorHint"></div>      
                         </div>     
                     </div>
                     <div class="form-group">      
                         <label for="project-name-input" class="col-sm-2 control-label xui-validate-star">密码</label>      
                         <div class="col-sm-10">       
-                            <input id="project-name-input" name="name" class="form-control" data-validate="required" type="text">       
+                            <input id="password" name="password" class="form-control" type="text" >
                             <div class="errorHint"></div>      
                         </div>     
                     </div>      
                     <div class="form-group">
                         <label for="project-name-input" class="col-sm-2 control-label xui-validate-star">头像</label>      
-                        <div class="col-sm-10">       
-                            <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">     
+                        <div class="col-sm-10">    
+                            <span class="img-show"></span>
+                            <div class="col-sm-4" id="uploadBtn_add">
+                                <!-- <input type="file" name="file_upload" id="file_upload"/> -->
+                            </div>   
+                            <!-- <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">  -->    
                         </div>    
                         
                     </div>
@@ -146,12 +150,13 @@
 
 {% block base_js %}
 <script type="text/javascript">
-
+    var user_id = "{{ user_id }}";
 	// W.userName = "{{ request.user.first_name }}";
 	// W.topNavs = W.loadJSON('topNavs');
 	// W.secondNavs = W.loadJSON('secondNavs');
 	// W.activeTopNav = "{{ first_nav_name }}";
 	// W.activeSecondNav = "{{ second_nav_name }}";
+    console.log("{{ user_id }}","====sss======");
     $('#change_password').click(function () {
         var projectName = $('#project-name-input').val();
         var projectDescription = $('#project-description-input').val();
@@ -173,9 +178,79 @@
         });
     });
 
-    $("#file-1").fileinput({
-        'allowedFileExtensions' : ['jpg', 'png','gif'],
-    });
+    // $("#file-1").fileinput({
+    //     'allowedFileExtensions' : ['jpg', 'png','gif'],
+    // });
+
+    $('.xa-editCurrentUser').click(function(){
+        $.ajax({
+            url:'/account/get_account/',
+            type:'get',
+            data:{
+                'user_id': user_id
+            },
+            success:function(resp){
+                var first_name = resp.data.first_name;
+                var user_name = resp.data.user_name;
+                var password = resp.data.password;
+                console.log(first_name,user_name,"========");
+                $("#username").val(user_name);
+                $("#firstname").val(first_name);
+                $("#password").val('******');
+
+                // $('#payType').modal('show');
+            },
+            error:function(){
+                console.log('create_fail');
+            }
+        });
+    })
+
+    $("#edit_account").click(function(){
+        var firstname = $("#firstname").val();
+        var username = $("#username").val();
+        var password = $("#password").val();
+        $.ajax({
+            url:'/account/edit_account/',
+            type:'post',
+            data:{
+                'user_id': user_id,
+                'first_name': firstname,
+                'username': username,
+                'password': password
+            },
+            success:function(resp){
+                if(resp.code == 200){
+                    alert("修改成功");
+                    location.reload();
+                }
+            },
+            error:function(){
+                console.log('create_fail');
+            }
+        });
+    })
+
+    // $(function(){
+    //     initUploadFive('uploadBtn_add','order','','/customer_case/upload_file/',onUploadComplete);
+    //     $('input[type="file"]').attr('title','点击添加图片');
+    // });
+
+    // var saved_path;
+    // function onUploadComplete(file, data) {
+    //     data = JSON.parse(data); 
+    //     saved_path=data.data.saved_path;
+    //     $queue = $('#uploadifive-uploadBtn_add-queue');
+    //     if (data.code == 200) {
+    //         $('.img-show').html('<img src="'+data.data.saved_path+'" alt="tupian" width=245px; height=160px />');
+    //         $('input[type="file"]').attr('title','点击替换图片');
+    //         $queue.find('.close').remove().end();
+    //     } else {
+    //         $queue.html('');
+    //         $('#uploadfilepath_'+type).val('');
+    //     }
+    // }
+
 </script>
 {% block js %}{% endblock %}
 {% endblock %}
