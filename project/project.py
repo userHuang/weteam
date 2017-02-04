@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 
 from core.jsonresponse import create_response
 # from project import models as project_models
-# from account import models as account_models
+from account import models as account_models
 import models as project_models
 
 @login_required
@@ -21,7 +21,12 @@ def project_list(request):
 	项目列表
 	"""
 	jsons = {'items':[]}
-	projects = project_models.Project.objects.filter(is_deleted=False)
+	belongs = account_models.UserProfile.objects.get(user_id=request.user.id, status=1).belongs
+	if belongs:
+		belongs = belongs.split(',')
+	else:
+		belongs = []
+	projects = project_models.Project.objects.filter(id__in=belongs, is_deleted=False)
 	project_infos = []
 	if projects:
 		project_infos = [{

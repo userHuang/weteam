@@ -14,7 +14,9 @@ urlpatterns = patterns('',
 
     #成员列表
     url(r'^members/', members.members),
-
+    url(r'^get_members/', members.get_members),
+    url(r'^add_member/', members.add_member),
+    
     #看板
     url(r'^main/', project_main.main),
     url(r'^get_require_details/', project_main.get_main),

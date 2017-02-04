@@ -34,7 +34,8 @@ def users(request):
     # jsons['items'].append(('users', json.dumps(users)))
     c = RequestContext(request, {
         # 'jsons': jsons,
-        'first_nav': 'user'
+        'first_nav': 'user',
+        'user_id': request.user.id
     })
     return render_to_response('user/users.html', c)
 

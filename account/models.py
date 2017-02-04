@@ -9,7 +9,10 @@ class UserProfile(models.Model):
     img_url = models.CharField(max_length=256, default='') #图片地址
     address = models.CharField(max_length=32, default='') #地址
     status = models.BooleanField(default=True) #状态
+    role = models.IntegerField(default=0) #角色
+    belongs = models.CharField(max_length=64, default='') #所属项目
     created_at = models.DateTimeField(auto_now_add=True) #创建时间
+    updated_at = models.DateTimeField(auto_now_add=True) #创建时间
     
     class Meta(object):
         db_table = 'account_user_profile'

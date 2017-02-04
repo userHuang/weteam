@@ -6,9 +6,11 @@ const _ = require('underscore');
 const Store = require('./Store');
 const Constant = require('./Constant');
 const Action = require('./Action');
+
+const AddUsrDialog =  require('./AddUsrDialog.react');
 require('./style.css');
 
-import {  Card, Col, Row } from 'antd';
+import { Card, Col, Row, Button } from 'antd';
 
 const MemberPage = React.createClass({
 	getInitialState() {
@@ -20,37 +22,35 @@ const MemberPage = React.createClass({
 		this.setState(Store.getData());
 	},
 
-	onChangeValue(index, event) {
-		const property = event.target.getAttribute('name');
-		const value = event.target.value;
-		Action.updateSpecialValues(index, property, value);
+	componentWillMount() {
+		Action.getMembers(this.state.projectId);
 	},
 
 	render() {
 		var memberLi = [];
-		var members = this.state.members;
-		console.log(members,"===========");
-		if(members.length>0){
-			memberLi = members.map((member, index) => {
+		var users = this.state.users;
+		if(users.length>0){
+			memberLi = users.map((user, index) => {
 				return(
 					<li className="xui-member-li" key={index}>
-						<Card style={{ width: 200 }}>
-							<p>Card content</p>
-							<p>Card content</p>
-							<p>Card content</p>
+						<Card style={{ width: 180 }}>
+							<p><img src={user.img_url} className="xui-account-img"/> </p>
+							<p>姓名：{user.name}</p>
+							<p>账号：{user.account}</p>
 						</Card>
 					</li>
 				)
 			});
 		}else{
-			memberLi = <Row><Col><h1>暂无成员</h1></Col></Row>;
+			memberLi.push(<Row key="no-user"><Col><h1>暂无成员</h1></Col></Row>);
 		}
 
 		return (
-			<div style={{ background: '#ECECEC', padding: '30px' }}>
+			<div style={{ background: '#ECECEC', padding: '30px', margin: '0 auto', width:'90%' }}>
 				<ul>
 					{memberLi}
 				</ul>
+				<AddUsrDialog allUsers={this.state.allUsers} projectId={this.state.projectId}/>
 		  	</div>
 		)
 	}
