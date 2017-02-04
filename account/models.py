@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
     name = models.CharField(max_length=32, default='') #登录名称
+    img_url = models.CharField(max_length=256, default='') #图片地址
     address = models.CharField(max_length=32, default='') #地址
     status = models.BooleanField(default=True) #状态
     created_at = models.DateTimeField(auto_now_add=True) #创建时间

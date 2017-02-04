@@ -21,6 +21,7 @@ def members(request):
 	成员列表
 	"""
 	jsons = {'items':[]}
+	project_id = request.GET.get('project_id', -1)
 	projects = project_models.Project.objects.filter(is_deleted=False)
 	members = []
 	if projects:
@@ -32,8 +33,11 @@ def members(request):
 		}for project in projects]
 
 	jsons['items'].append(('members', json.dumps(members)))
+	
 	c = RequestContext(request, {
 		'jsons': jsons,
-		'first_nav': 'member'
+		'project_id': project_id,
+		'first_nav': 'member',
+		'user_id': request.user.id,
 	})
 	return render_to_response('member/members.html', c)

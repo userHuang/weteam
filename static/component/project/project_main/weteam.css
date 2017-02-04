@@ -128,21 +128,6 @@ form label {
 /*
  * kanban页面样式
  */
-.xui-kanbanPage {
-    overflow: auto;
-    background-color: #fff;
-}
-.xui-kanbanPage .xui-inner-header {
-    height: 50px;
-    line-height: 50px;
-    padding-left: 20px;
-    position: relative;
-    font-size: 1.3em;
-    font-weight: bold;
-    border-bottom: solid 1px #D9D9D9;
-    background-color: #eee;
-}
-
 .xui-kanban-column .xui-inner-header{
     height: 40px;
     line-height: 40px;
@@ -151,10 +136,6 @@ form label {
     font-size: 16px;
     font-weight: bold;
     border-bottom: solid 1px #D9D9D9;
-}
-
-.xui-kanbanPage .xui-inner-iterationInfo {
-    color: #888;
 }
 
 .xui-kanbanPanel {
@@ -180,8 +161,8 @@ form label {
     margin-top: 10px;
     margin-left: 10px;
     float: left;
-    /*overflow-y: auto;*/
 }
+
 .xui-kanban-state-highlight {
     border: dashed 2px #FFFA40;
     border-radius: 5px;
@@ -191,159 +172,7 @@ form label {
     margin-left: 10px;
     float: left;
 }
-.xui-kanbanPage .xui-kanban-column .xui-inner-header {
-    height: 40px;
-    line-height: 40px;
-    padding-left: 10px;
-    position: relative;
-    font-size: 1.1em;
-    font-weight: bold;
-    border-bottom: solid 1px #D9D9D9;
-    /*
-    cursor: move;
-    */
-}
-.xui-kanbanPage .xui-kanban-taskContainer {
-    overflow-y: auto;
-    height: 100%;
-}
-.xui-kanbanPage .xui-kanban-task {
-    margin: 5px;
-    position: relative;
-    margin-top: 15px;
-    border-radius: 2px;
-    background-color: #FFF;
-    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-}
-.xui-kanbanPage .xui-kanban-task .xui-badge {
-    background-color: #5CB85C;
-    color: #FFFFFF;
-    /*
-    position: absolute;
-    top: 3px;
-    left: 83px;
-    */
-}
-.xui-kanbanPage .xui-kanban-task .xui-dangerBadge {
-    background-color: #D9534F;
-}
-.xui-kanbanPage .xui-kanban-task .xui-infoBadge {
-    background-color: #5BC0DE;
-}
-.xui-kanbanPage .xui-kanban-task .xui-tagBadge {
-    background-color: #f0ad4e;
-}
-.xui-kanbanPage .xui-kanban-task .xui-relatedRequirementBadge {
-    background-color: #c87800;
-    cursor: pointer;
-}
-.xui-kanbanPage .xui-kanban-finishedTask {
-    background-color: #DFDFDF;
-    text-decoration: line-through;
-}
-.xui-kanbanPage .xui-kanban-task .xui-kanban-taskTitle {
-    /*width: 80px;*/
-    text-align: left;
-    padding-left: 10px;
-    background-color: #6492AC;
-    height: 25px;
-    line-height: 25px;
-    color: #FFF;
-}
-.xui-kanbanPage .xui-kanban-task .xui-kanban-taskContent {
-    padding: 5px 10px;
-}
-.xui-kanbanPage .xui-kanban-task .xui-kanban-requirementTaskTitle {
-    background-color: #c87800;
-    cursor: pointer;
-}
-.xui-kanbanPage .xui-kanban-task .xui-kanban-testTaskTitle {
-    background-color: #00bb00;
-}
-.xui-kanbanPage .xui-kanban-task .xui-kanban-bugTaskTitle {
-    background-color: #ef4b3f;
-}
-.xui-kanbanPage .xui-kanban-task .xui-inner-actionBar {
-    position: absolute;
-    right: 10px;
-    top: 2px;
-    visibility: hidden;
-}
-.xui-kanbanPage .xui-kanban-task:hover .xui-inner-actionBar {
-    visibility: visible;
-}
-.xui-kanbanPage .xui-kanban-task .xui-i-infoBar {
-    color: #666;
-    border-bottom: solid 1px #CFCFCF;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding-bottom: 3px;
-}
-.xui-kanbanPage .xui-kanban-task .xui-i-subTask {
-    background-color: #E1E1E1;
-    padding: 0px 3px;
-    color: gray;
-    cursor: pointer;
-}
-.xui-kanbanPage .xui-inner-removeTaskBtn {
-    display: none;
-}
-.xui-kanbanPage .xui-inner-assignManagerBtn {
-    display: none;
-}
-.xui-kanbanPage .xui-kanban-column:first-child .xui-inner-removeTaskBtn {
-    display: inline;
-}
-.xui-kanbanPage .xui-kanban-column:first-child .xui-inner-assignManagerBtn {
-    display: inline;
-}
-.xui-kanbanPage .xui-kanban-column:first-child .xui-inner-moveTaskBtn {
-    display: none;
-}
-.xui-kanbanPage .xui-kanban-column:last-child .xui-inner-forwardTaskBtn {
-    display: none;
-}
-.xui-kanbanPage .xui-kanban-activeTask {
-    background-color: #FEEA65;
-}
-.xui-kanbanPage .xui-kanban-taskManagerThumbnail {
-    text-align: right;
-    padding: 0px 5px 5px 5px;
-    height: 55px;
-    line-height: 55px
-}
-.xui-kanbanPage .xui-kanban-taskManagerThumbnail img {
-    width: 45px;
-}
-.xui-kanbanPage .xui-kanban-taskBufferContainer .xui-kanban-task {
-    background-color: #F8F8F8;
-}
-.xui-kanbanPage .xui-kanban-task-bug-normal {
-    background-color: #FFFAE6 !important;
-}
-.xui-kanbanPage .xui-kanban-task-bug-high {
-    background-color: #FFCDBF !important;
-}
-.xui-kanbanPage .xui-kanban-taskBufferContainer .xui-kanban-taskManagerThumbnail {
-    text-align: left;
-}
-.xui-kanbanPage .xui-kanban-taskBufferContainer .xui-kanban-taskManagerThumbnail img {
-    width: 30px;
-}
-.xui-kanbanPage .xui-inner-participants img {
-    width: 30px;
-}
-.xui-kanbanPage .xui-inner-participants .xui-inner-creater {
-    border: solid 1px blue;
-}
-.xui-kanbanPage .xui-kanban-finishDate {
-    text-align: right;
-    text-decoration: none !important;
-    padding: 0px 5px 5px 0px;
-    color: #BBB;
-}
+
 .xui-globalDropdown {
     position: absolute;
     top: 100px;
@@ -351,241 +180,11 @@ form label {
     z-index: 1000;
     display: none;
 }
+
 .xui-globalDropdown .dropdown-menu {
     display: block;
 }
 
-
-
-
-/*
- * task detail样式
- */
-.xui-taskDetail {margin: 10px; padding: 5px 10px; border-bottom: solid 1px #DDD;}
-.xui-taskDetail img.xui-inner-thumbnail {
-    display: block;
-    width: 50px;
-    border-radius: 10px;
-}
-.xui-taskDetail  .xui-inner-date {
-    text-align: right;
-    color: #BBB;
-}
-
-/*
- * Chart的样式
- */
-.xui-chart {
-    margin: 10px auto;
-    width: 800px;
-}
-
-.xui-chart .xui-inner-title {
-    border-bottom: solid 1px #DFDFDF;
-    height: 40px;
-    line-height: 40px;
-    font-size: 1.5em;
-}
-
-.xui-chart .xui-inner-content {
-    background-color: #FFF;
-}
-
-/*
- * chart页面样式
- */
-.xui-chartPage .xui-inner-header {
-    width: 800px;
-    padding: 10px;
-    margin: 10px auto;
-    background-color: #DFDFDF;
-}
-
-/*
- * taskflow页面样式
- */
-.xui-taskflowPage {
-
-}
-.xui-taskflowPage-taskGroup .xui-i-date {
-    text-align: center; 
-    width: 100px; 
-    font-size: 12px; 
-    padding: 5px; 
-    font-weight: bold;
-    margin: 10px;
-}
-.xui-taskflowPage-taskGroup-task {
-    background-color: #FFF;
-    padding: 15px;
-    margin: 0px 40px 10px 40px;
-    position: relative;
-}
-.xui-taskflowPage-taskGroup-task .xui-i-badge {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    color: #FFF;
-    height: 25px;
-    padding: 0px 15px;
-    line-height: 25px;
-}
-.xui-taskflowPage-taskGroup-task .xui-i-badge-requirement {
-    background-color: #C87800;
-}
-.xui-taskflowPage-taskGroup-task .xui-i-badge-bug {
-    background-color: #EF4B3F;
-}
-.xui-taskflowPage-taskGroup-task .xui-i-title {
-    position: relative;
-    margin-top: 15px;
-    padding-bottom: 5px;
-    border-bottom: solid 1px #EFEFEF;
-}
-.xui-taskflowPage-taskGroup-task .xui-i-info {
-    padding: 3px 5px;
-    font-size: 12px;
-    margin-bottom: 5px;
-    float: left;
-}
-.xui-taskflowPage-taskGroup-task .xui-i-participants {
-    padding-top: 10px;
-    border-top: solid 1px #EFEFEF;
-}
-.xui-taskflowPage-taskGroup-task .xui-i-participant {
-    width: 30px;
-}
-.xui-taskflowPage-taskGroup-task .xui-i-creater {
-    border: solid 1px blue;
-}
-.xui-taskflowPage-taskGroup-task .xui-i-subTasks-task {
-    font-size: 12px;
-}
-.xui-taskflowPage-taskGroup-task .xui-i-subTaskBadge {
-    color: #FFF;
-    height: 20px;
-    font-size: 12px;
-    padding: 0px 8px;
-    line-height: 20px;
-    margin-left: 20px;
-    margin-right: 5px;
-}
-.xui-taskflowPage-taskGroup-task .xui-i-subTaskBadge-task {
-    background-color: #6492AC;
-}
-.xui-taskflowPage-taskGroup-task .xui-i-subTaskBadge-bug {
-    background-color: #EF4B3F;
-}
-
-/**
- * 统计页面通用样式
- */
-.xui-secondNav {
-    background-color: #DCDCDC;
-    padding: 5px 10px 5px 15px;
-}
-.xui-secondNav .nav > li > a {
-    padding: 5px 10px;
-}
-
-
-/**
- * requirements页面样式
- */
-.xui-requirementsPage {
-
-}
-.xui-requirementsPage .xui-inner-header {
-    padding: 10px;
-    margin: 10px auto;
-    background-color: #FFF;
-}
-.xui-requirementsPage table {
-    background-color: #FFF;
-    margin-bottom: 0px;
-}
-.xui-requirementsPage .xui-inner-finish {
-    color: #BBB;
-    text-decoration: line-through;
-}
-.xui-requirementsPage .xui-inner-finish a:link, .xui-requirementsPage .xui-inner-finish a:visited{
-    color: #BBB;
-}
-.xui-requirementsPage .xui-inner-titleLink {
-    display: block;
-}
-.xui-requirementsPage .xui-i-tag {
-    position: relative;
-    float: left;
-    padding: 6px 10px;
-    background-color: #f0ad4e;
-    color: #FFF;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    font-size: 10px;
-}
-.xui-requirementsPage .xui-i-tag-shared {
-    background-color: #5CB85C;
-}
-
-/**
- * iteration tasks页面样式
- */
-.xui-iterationTasksPage {
-
-}
-.xui-iterationTasksPage table a:link, .xui-iterationTasksPage table a:visited{
-    text-decoration: none;
-}
-
-
-
-/**
- * bugs页面样式
- */
-.xui-bugsPage {
-
-}
-.xui-bugsPage .xui-inner-header {
-    padding: 10px;
-    margin: 10px auto;
-    background-color: #FFF;
-}
-.xui-bugsPage table {
-    background-color: #FFF;
-    margin-bottom: 0px;
-}
-.xui-bugsPage .xui-inner-finish {
-    color: #BBB;
-    text-decoration: line-through;
-}
-.xui-bugsPage .xui-inner-finish a:link, .xui-bugsPage .xui-inner-finish a:visited{
-    color: #BBB;
-}
-.xui-bugsPage .xui-inner-titleLink {
-    display: block;
-}
-.xui-bugsPage .xui-i-tag {
-    position: relative;
-    float: left;
-    padding: 6px 10px;
-    background-color: #f0ad4e;
-    color: #FFF;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    font-size: 10px;
-}
-
-
-/**
- * configs页面样式
- */
-.xui-configPage {
-
-}
-.xui-configPage-tags {
-
-}
 .xui-configPage-tags .xui-i-tag {
     position: relative;
     float: left;
@@ -598,6 +197,7 @@ form label {
 .xui-configPage-tags .xui-i-tag:hover .xui-i-close {
     display: block;
 }
+
 .xui-configPage-tags .xui-i-close {
     display: none;
     position: absolute;

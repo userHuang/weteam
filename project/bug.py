@@ -24,6 +24,7 @@ def bug_list(request):
     c = RequestContext(request, {
         'jsons': jsons,
         'project_id': project_id,
+        'user_id': request.user.id,
         'first_nav': 'bug'
     })
     return render_to_response('bug/bug_list.html', c)

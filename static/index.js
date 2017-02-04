@@ -1,7 +1,6 @@
 'use strict';
 var React = require('react');
 var ReactDOM = require('react-dom');
-var PageComponent = require('./component/account/accounts/SpecialPostagePage.react');
 var dynamicRequire = require('dynamicRequire');
 
 $(document).ready(function() {
@@ -9,7 +8,6 @@ $(document).ready(function() {
 	var pageNode = $page.get(0);
 	var pageComponent = window.pageContentComponent;
 	console.log(window.pageContentComponent,"=========");
-	// var pageComponent = require(window.pageContentComponent);
 
     var Page = React.createClass({
         render: function(){

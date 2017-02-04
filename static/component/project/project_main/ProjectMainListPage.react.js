@@ -62,7 +62,7 @@ const ProjectMainListPage = React.createClass({
 		var requirements = this.state.requirements;
 		var requireDatas = [];
 
-		if(requirements){
+		if(requirements.length>0){
 			requireDatas = requirements.map((requirement, i)=>{
 				var requires = [];
 				var requiresRow = [];
@@ -96,7 +96,6 @@ const ProjectMainListPage = React.createClass({
 					maxHasDo = '已完成';
 				}
 
-				console.log(i,requires,"===++++++======");
 				if(requires){
 					requiresRow = requires.map((require, index) => {
 						const title = require.require_type === 0? '需求 '+ require.id: 'BUG '+ require.id;
@@ -180,6 +179,10 @@ const ProjectMainListPage = React.createClass({
 					</div>
 				)
 			})
+		}else{
+			requireDatas.push(
+				<Card key='noData'><p>暂无需求</p></Card>
+			)
 		}
 
 		return (

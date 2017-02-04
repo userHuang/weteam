@@ -1,0 +1,265 @@
+/*#header {background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,#EFEFEF),color-stop(100%,#D3E1F1));}*/
+html, body {
+	background-color: #eee;
+	font-family: 微软雅黑,"open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.xui-display-table {
+	display: table;
+}
+.xui-display-tablecell {
+	display: table-cell;
+}
+.xui-form-row {
+	/*display: table;*/
+	width: 100%;
+	overflow: hidden;
+}
+.xui-form-item {
+	/*display: table-cell;*/
+	float:left;
+	vertical-align: top;
+	width: 33%;
+}
+.clearboth {
+	clear: both;
+}
+.w100 {
+	width: 100px;
+}
+.w200 {
+	width: 200px;
+}
+.w150 {
+	width: 150px;
+}
+.w260 {
+	width: 260px;
+}
+.xui-searchPanel {
+	background-color: #FFF;
+	padding: 10px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+}
+.xui-searchPanel .control-label {
+	width: 65px;
+	text-align: right;
+}
+
+
+/**
+ * 布局样式
+ */
+.xui-col-3 {
+	float: left;
+	width: 33.333%;
+}
+.xui-col-4 {
+	float: left;
+	width: 25%;
+}
+
+
+
+/**
+ * navbar 样式
+ */
+.xui-navbar {
+	background-color: #181818;
+    background-image: url("/static/img/foot-header-bg.png");
+    background-repeat: repeat-x;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.1) inset;
+    border: none;
+}
+.xui-navbar .nav > li > a {
+    color: #a7b1c2;
+    font-weight: 600;
+    padding: 15px 20px 15px 25px;
+}
+
+
+/**
+ * second nav样式
+ */
+.xui-secondNav {
+	width: 220px;
+	position: fixed;
+	top: 50px;
+	left: 0px;
+}
+.xui-secondNav .nav > li > a {
+    color: #a7b1c2;
+    font-weight: 600;
+    padding: 14px 20px 14px 25px;
+}
+.xui-secondNav .nav > li.active {
+	background: #293846 none repeat scroll 0 0;
+    border-left: 4px solid #19aa8d;
+}
+.xui-secondNav .nav-pills>li.active>a {
+	color:#FFF;
+	border-radius: 0px;
+}
+.xui-secondNav .nav-pills>li.active>a:hover {
+	color:#FFF;
+	border-radius: 0px;
+}
+.xui-secondNav .nav-pills > li.active > a, 
+.xui-secondNav .nav-pills > li.active > a:hover, 
+.xui-secondNav .nav-pills > li.active > a:focus {
+	background-color: transparent;
+}
+.xui-secondNav .nav > li > a:hover,
+.xui-secondNav .nav > li > a:focus {
+	background-color: #293846;
+	text-decoration: none;
+	color: #FFF;
+}
+.xui-secondNav .nav-stacked > li + li {
+	margin-top: 0px;
+}
+
+
+/**
+ * content区域样式
+ */
+.xui-contentPanel {
+	background-color: #2F4050;
+	min-height: 680px;
+}
+.xui-container {
+	min-height: 680px;
+	-webkit-transition: all 0.5s ease 0s;
+	-moz-transition: all 0.5s ease 0s;
+	transition: all 0.5s ease 0s;
+	margin: 0px 0px 0px 220px;
+	background-color: #FFF;
+}
+
+
+/**
+ * enhance bootstrap
+ */
+#header .navbar-brand {
+	font-size: 26px;
+}
+/*
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+	background-color: #FFF;
+}
+*/
+.navbar-default .navbar-brand {
+	color: #FFF;
+}
+.breadcrumb {
+	background-color: #FFF;
+	margin-bottom: 0px;
+	margin-left: -15px;
+    margin-right: -15px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+.control-label {
+	color: #666;
+}
+.pagination input {
+	height: 20px;
+	width: 30px;
+}
+.table thead > tr > th {
+	font-weight: bold;
+}
+.form-inline .col-sm-2 {
+	width: auto !important;
+}
+.form-inline .col-sm-5 {
+	width: auto;
+}
+.form-inline .control-label {
+	margin-right: 0px;
+	padding-right: 0px;
+}
+.form-inline .form-group{
+	min-height: 59px;
+}
+
+
+
+/*
+ * Chart的样式
+ */
+.xui-chart {
+	max-width: 800px;
+	background-color: #FFF;
+}
+.xui-chart .xui-i-title {
+	border-top: solid 3px #e7eaec;
+	color: #676a6c;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+	font-size: 14;
+	font-weight: 600;
+}
+.xui-chart .xui-i-content {
+	border-top: solid 1px #e7eaec;
+	background-color: #FFF;
+}
+
+/**
+ * form page的样式
+ */
+.xui-formPage .form-horizontal .control-label {
+	width: 150px;
+	text-align: right;
+}
+.xui-formPage .xui-updateForm {
+	background-color: #F5F5F5;
+	padding: 5px 0px 10px 0px;
+}
+.xui-formPage tr.xui-i-expandable td {
+	cursor: pointer;
+}
+.xui-formPage tr.xui-i-expanded td {
+	background-color: #F5F5F5;
+}
+.xui-formPage .xui-i-table .xui-i-content {
+	padding: 5px 10px;
+}
+.xui-formPage .xui-i-table .xui-i-contentHeader {
+	margin: 0px 0px 5px 0px;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 10px 0px;
+	border-bottom: solid 1px #CCC;
+}
+
+
+
+
+
+
+.xui-blue{
+	color: #1262b7!important;
+}
+
+.icon-arrow-up {
+  /* background: #000; */
+  background: url('/static/img/storingUp.png') no-repeat;
+  width: 10px;
+  height: 11px;
+  display: inline-block;
+}
+.icon-arrow-down {
+  /* background: #000; */
+  background: url('/static/img/storing.png') no-repeat;
+  width: 10px;
+  height: 11px;
+  display: inline-block;
+}
+
+/*.xui-hide-col {
+  cursor: pointer;
+}*/

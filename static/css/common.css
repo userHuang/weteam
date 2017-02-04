@@ -69,3 +69,7 @@
 	z-index: 10000;
 	padding: 10px;
 }
+
+#uploadifive-uploadBtn_add-queue{
+    display: none;
+}

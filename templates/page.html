@@ -79,7 +79,7 @@
                 </form>
             </div>    
             <div class="modal-footer">    
-                <button class="btn btn-success" id="change_password">完成</button>   
+                <button class="btn btn-success" id="create_project">完成</button>   
             </div>  
         </div>
     </div>
@@ -123,7 +123,7 @@
                         <div class="col-sm-10">    
                             <span class="img-show"></span>
                             <div class="col-sm-4" id="uploadBtn_add">
-                                <!-- <input type="file" name="file_upload" id="file_upload"/> -->
+                                <input type="file" name="file_upload" id="file_upload"/>
                             </div>   
                             <!-- <input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">  -->    
                         </div>    
@@ -151,13 +151,36 @@
 {% block base_js %}
 <script type="text/javascript">
     var user_id = "{{ user_id }}";
+    var saved_path;
 	// W.userName = "{{ request.user.first_name }}";
 	// W.topNavs = W.loadJSON('topNavs');
 	// W.secondNavs = W.loadJSON('secondNavs');
 	// W.activeTopNav = "{{ first_nav_name }}";
 	// W.activeSecondNav = "{{ second_nav_name }}";
-    console.log("{{ user_id }}","====sss======");
-    $('#change_password').click(function () {
+
+    //初始化上传图片
+    $(function(){
+        initUploadFive('uploadBtn_add','order','','/account/upload_image/',onUploadComplete);
+        $('input[type="file"]').attr('title','点击添加图片');
+    });
+    
+    function onUploadComplete(file, data) {
+        data = JSON.parse(data); 
+        saved_path = data.data.saved_path;
+        $queue = $('#uploadifive-uploadBtn_add-queue');
+
+        if (data.code == 200) {
+            $('.img-show').html('<img src="'+data.data.saved_path+'" alt="tupian" width=200px; height=120px />');
+            $('input[type="file"]').attr('title','点击替换图片');
+            $queue.find('.close').remove().end();
+        } else {
+            $queue.html('');
+            $('#uploadfilepath_'+type).val('');
+        }
+    }
+
+    //新建项目
+    $('#create_project').click(function () {
         var projectName = $('#project-name-input').val();
         var projectDescription = $('#project-description-input').val();
         $.ajax({
@@ -178,10 +201,7 @@
         });
     });
 
-    // $("#file-1").fileinput({
-    //     'allowedFileExtensions' : ['jpg', 'png','gif'],
-    // });
-
+    //获取个人信息
     $('.xa-editCurrentUser').click(function(){
         $.ajax({
             url:'/account/get_account/',
@@ -190,39 +210,18 @@
                 'user_id': user_id
             },
             success:function(resp){
-                var first_name = resp.data.first_name;
-                var user_name = resp.data.user_name;
+                var firstname = resp.data.first_name;
+                var username = resp.data.user_name;
                 var password = resp.data.password;
-                console.log(first_name,user_name,"========");
-                $("#username").val(user_name);
-                $("#firstname").val(first_name);
+                var imgUrl = resp.data.img_url;
+                saved_path = imgUrl;
+
+                $("#username").val(username);
+                $("#firstname").val(firstname);
                 $("#password").val('******');
-
-                // $('#payType').modal('show');
-            },
-            error:function(){
-                console.log('create_fail');
-            }
-        });
-    })
-
-    $("#edit_account").click(function(){
-        var firstname = $("#firstname").val();
-        var username = $("#username").val();
-        var password = $("#password").val();
-        $.ajax({
-            url:'/account/edit_account/',
-            type:'post',
-            data:{
-                'user_id': user_id,
-                'first_name': firstname,
-                'username': username,
-                'password': password
-            },
-            success:function(resp){
-                if(resp.code == 200){
-                    alert("修改成功");
-                    location.reload();
+                if(imgUrl){
+                    $('.img-show').html('<img src='+imgUrl+' alt="" width=200px; height=120px  />');
+                    $('input[type="file"]').attr('title','点击替换图片');
                 }
             },
             error:function(){
@@ -231,25 +230,32 @@
         });
     })
 
-    // $(function(){
-    //     initUploadFive('uploadBtn_add','order','','/customer_case/upload_file/',onUploadComplete);
-    //     $('input[type="file"]').attr('title','点击添加图片');
-    // });
+    //修改账号
+    $("#edit_account").click(function(){
+        var firstname = $("#firstname").val();
+        var username = $("#username").val();
+        var password = $("#password").val();
 
-    // var saved_path;
-    // function onUploadComplete(file, data) {
-    //     data = JSON.parse(data); 
-    //     saved_path=data.data.saved_path;
-    //     $queue = $('#uploadifive-uploadBtn_add-queue');
-    //     if (data.code == 200) {
-    //         $('.img-show').html('<img src="'+data.data.saved_path+'" alt="tupian" width=245px; height=160px />');
-    //         $('input[type="file"]').attr('title','点击替换图片');
-    //         $queue.find('.close').remove().end();
-    //     } else {
-    //         $queue.html('');
-    //         $('#uploadfilepath_'+type).val('');
-    //     }
-    // }
+        $.ajax({
+            url:'/account/edit_account/',
+            type:'post',
+            data:{
+                'user_id': user_id,
+                'first_name': firstname,
+                'username': username,
+                'password': password,
+                'img_url': saved_path
+            },
+            success:function(resp){
+                if(resp.code == 200){
+                    location.reload();
+                }
+            },
+            error:function(){
+                console.log('create_fail');
+            }
+        });
+    })
 
 </script>
 {% block js %}{% endblock %}

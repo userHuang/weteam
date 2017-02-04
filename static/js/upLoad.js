@@ -16,11 +16,11 @@
             'overrideEvents': ['onError','onSelect','onUploadComplete'],
             'removeCompleted' : false,
             'fileObjName' : 'file',
-            'height'      : 145,
+            'height'      : 40,
             'buttonText'  : buttonText,
             'buttonClass' : 'upload_logo uploadBtn',
             'fileSizeLimit': '20MB',
-            'width'       : 145,
+            'width'       : 75,
             'uploadScript': uploadScript,
             'onUploadComplete' : onUploadComplete,
             'onError' : function(errorType,file) {

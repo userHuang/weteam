@@ -34,6 +34,7 @@ def main(request):
 	c = RequestContext(request, {
 		'jsons': jsons,
 		'project_id': project_id,
+		'user_id': request.user.id,
 		'first_nav': 'main'
 	})
 	return render_to_response('project_main/main.html', c)

@@ -9,7 +9,7 @@ var Dispatcher = require('../../../../util/dispatcher');
 var Constant = require('./Constant');
 var W = require('../../loadJSON');
 
-var SpecialPostageStore = StoreUtil.createStore(Dispatcher, {
+var Store = StoreUtil.createStore(Dispatcher, {
 	actions: {
 		'handleAddSpecialPostage': Constant.POSTAGE_CONFIG_ADD_SPECIAL_POSTAGE,
 		'handleUpdateSpecialValues': Constant.POSTAGE_CONFIG_UPDATE_SPECIAL_VALUES,
@@ -62,4 +62,4 @@ var SpecialPostageStore = StoreUtil.createStore(Dispatcher, {
 	}
 });
 
-module.exports = SpecialPostageStore;
+module.exports = Store;

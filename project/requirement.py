@@ -34,6 +34,7 @@ def require_list(request):
     c = RequestContext(request, {
         'jsons': jsons,
         'project_id': project_id,
+        'user_id': request.user.id,
         'first_nav': 'require'
     })
     return render_to_response('requirement/require_list.html', c)

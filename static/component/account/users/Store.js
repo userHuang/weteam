@@ -9,7 +9,7 @@ var Dispatcher = require('../../../../util/dispatcher');
 var Constant = require('./Constant');
 var W = require('../../loadJSON');
 
-var SpecialPostageStore = StoreUtil.createStore(Dispatcher, {
+var Store = StoreUtil.createStore(Dispatcher, {
 	actions: {
 		'handleAddUser': Constant.ACCOUNT_USERS_ADD_USER,
 		'handleGetUsers': Constant.ACCOUNT_USERS_GET_USERS
@@ -35,4 +35,4 @@ var SpecialPostageStore = StoreUtil.createStore(Dispatcher, {
 	}
 });
 
-module.exports = SpecialPostageStore;
+module.exports = Store;
