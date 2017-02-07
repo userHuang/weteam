@@ -17,6 +17,7 @@ var Store = StoreUtil.createStore(Dispatcher, {
 
 	init() {
 		this.data = {
+			'role': 1,
 			'users': [],
 			'allUsers': [],
 			'projectId': window.projectId
@@ -26,6 +27,7 @@ var Store = StoreUtil.createStore(Dispatcher, {
 	handleGetUsers(action) {
 		this.data['users'] = action.data.users;
 		this.data['allUsers'] = action.data.allUsers;
+		this.data['role'] = action.data.role;
 		this.__emitChange();
 	},
 

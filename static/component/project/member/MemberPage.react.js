@@ -28,7 +28,16 @@ const MemberPage = React.createClass({
 
 	render() {
 		var memberLi = [];
+		var btnStyle = {};
 		var users = this.state.users;
+		var role = this.state.role;
+		console.log(role,"+++++===++++");
+		if(role==1){
+			btnStyle = {
+				display: 'none'
+			}
+		}
+
 		if(users.length>0){
 			memberLi = users.map((user, index) => {
 				return(
@@ -47,10 +56,8 @@ const MemberPage = React.createClass({
 
 		return (
 			<div style={{ background: '#ECECEC', padding: '30px', margin: '0 auto', width:'90%' }}>
-				<ul>
-					{memberLi}
-				</ul>
-				<AddUsrDialog allUsers={this.state.allUsers} projectId={this.state.projectId}/>
+				<ul>{memberLi}</ul>
+				<div style={btnStyle}><AddUsrDialog allUsers={this.state.allUsers} projectId={this.state.projectId}/></div>
 		  	</div>
 		)
 	}

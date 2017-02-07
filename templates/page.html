@@ -20,7 +20,10 @@
                 {% else %}
                 <ul class="nav navbar-nav">
                     <li {% if first_nav == "project" %}class="active"{% endif %}><a href="/project/">项目</a></li>
-                    <li {% if first_nav == "user" %}class="active"{% endif %}><a href="/user/">成员配置</a></li>
+                    
+                    {% if role == 0 or first_nav == "user" %}
+                        <li {% if first_nav == "user" %}class="active"{% endif %}><a href="/user/">成员配置</a></li>
+                    {% endif %}
                 </ul>
                 {% endif %}
                 <div class="btn-group navbar-form navbar-right">
@@ -33,11 +36,11 @@
                         <li><a href="/account/logout/">退出</a></li>
                     </ul>
                 </div>
-                {% if first_nav == "project" %}
-                <button data-target="#addProjectModal" role="button" data-toggle="modal" class="navbar-btn btn-default btn navbar-right xa-addProject">
-                    <span class="glyphicon glyphicon-plus"></span>
-                    添加项目
-                </button>
+                {% if first_nav == "project" and role == 0 or first_nav == "user" %}
+                    <button data-target="#addProjectModal" role="button" data-toggle="modal" class="navbar-btn btn-default btn navbar-right xa-addProject">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        添加项目
+                    </button>
                 {% endif %}
 
                 <div class="navbar-right">

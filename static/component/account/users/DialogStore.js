@@ -18,7 +18,8 @@ var DialogStore = StoreUtil.createStore(Dispatcher, {
 
     init() {
         this.data = {
-            visible: false
+            visible: false,
+            role: 1
         };
     },
 

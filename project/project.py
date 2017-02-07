@@ -21,12 +21,20 @@ def project_list(request):
 	项目列表
 	"""
 	jsons = {'items':[]}
-	belongs = account_models.UserProfile.objects.get(user_id=request.user.id, status=1).belongs
+	account_user_profile = account_models.UserProfile.objects.get(user_id=request.user.id, status=True)
+	belongs = account_user_profile.belongs
+	role = account_user_profile.role
+
 	if belongs:
 		belongs = belongs.split(',')
 	else:
 		belongs = []
-	projects = project_models.Project.objects.filter(id__in=belongs, is_deleted=False)
+
+	if role == 0:
+		projects = project_models.Project.objects.filter(is_deleted=False)
+	else:
+		projects = project_models.Project.objects.filter(id__in=belongs, is_deleted=False)
+
 	project_infos = []
 	if projects:
 		project_infos = [{
@@ -40,6 +48,7 @@ def project_list(request):
 	c = RequestContext(request, {
 		'jsons': jsons,
 		'first_nav': 'project',
+		'role': role,
 		'user_id': request.user.id
 	})
 	return render_to_response('project/new_project.html', c)

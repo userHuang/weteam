@@ -88,7 +88,7 @@ var Action = {
                     message.success('进入看板成功', 1.5);
                     Action.getRequire(projectId);
                 }else{
-                    message.success('进入看板失败', 1.5);
+                    message.error('进入看板失败', 1.5);
                 }
             },
             error:function(){

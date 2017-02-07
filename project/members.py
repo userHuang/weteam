@@ -32,6 +32,7 @@ def members(request):
 
 def get_members(request):
 	project_id = request.GET.get('project_id', -1)
+	role = account_models.UserProfile.objects.get(user_id=request.user.id, status=True).role
 	user_profiles = account_models.UserProfile.objects.filter(belongs__icontains=project_id, status=True).order_by('updated_at')
 	user_ids = [user_profile.user_id for user_profile in user_profiles]
 	auth_users = User.objects.filter(id__in=user_ids)
@@ -57,6 +58,7 @@ def get_members(request):
 
 	response = create_response(200)
 	response.data = {
+		'role': role,
 		'users': json.dumps(users),
 		'all_users': json.dumps(all_users)
 	}

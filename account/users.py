@@ -63,16 +63,20 @@ def addUser(request):
     """
     user_name = request.POST.get('user_name', '')
     account = request.POST.get('account', '')
+    role = request.POST.get('role', 1)
+
     try:
-        user = User.objects.create_user(account, account+'@qq.com', '123456')
+        user = User.objects.create_user(account, account+'@qq.com', account)
         user.first_name = user_name
         user.save()
         account_models.UserProfile.objects.create(
             name= account,
-            user_id= user.id
+            user_id= user.id,
+            role= role
         )
+        response = create_response(200)
     except Exception, e:
         print e
+        response = create_response(500)
     
-    response = create_response(200)
     return response.get_response()

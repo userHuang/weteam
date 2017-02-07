@@ -34,3 +34,8 @@
 .xui-addUser-input .ant-input {
     width: 200px;
 }
+
+.ant-radio-group span{
+    margin-bottom: 0px;
+    font-size: 14px;
+}

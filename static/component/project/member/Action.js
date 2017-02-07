@@ -43,7 +43,8 @@ var Action = {
 						actionType: Constant.PROJECT_MEMBER_GET_USERS,
 						data: {
 							'users': JSON.parse(resp.data.users),
-                            'allUsers': JSON.parse(resp.data.all_users)
+                            'allUsers': JSON.parse(resp.data.all_users),
+                            'role': resp.data.role
 						}
 					});
                 }

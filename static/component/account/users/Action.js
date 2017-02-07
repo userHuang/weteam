@@ -3,6 +3,7 @@
 var _ = require('underscore');
 var Constant = require('./Constant');
 var Dispatcher = require('../../../../util/dispatcher');
+import { message } from 'antd';
 
 var Action = {
 	updateValues (property, value) {
@@ -29,7 +30,7 @@ var Action = {
 		});
 	},
 
-	getUsers(){
+	getUsers() {
 		$.ajax({
             url:'/account/getUsers/',
             type:'get',
@@ -52,25 +53,26 @@ var Action = {
         });
 	},
 
-	addUser (userName, account) {
+	addUser (userName, account, role) {
 		$.ajax({
             url:'/account/addUser/',
             type:'post',
             data:{
                 'user_name': userName,
-                'account': account
+                'account': account,
+                'role': role
             },
             success:function(resp){
                 if(resp.code == 200){
-                    // location.reload();
-     //                Dispatcher.dispatch({
-					// 	actionType: Constant.ACCOUNT_USERS_ADD_USER,
-					// 	data: {}
-					// });
+                    console.log("====添加成功=====");
+                    message.success('添加成功', 2);
 					Action.getUsers();
+                }else{
+                    message.error('添加失败', 1.5);
                 }
             },
             error:function(){
+                message.error('添加失败', 1.5);
                 console.log('create_fail');
             }
         });
