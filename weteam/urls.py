@@ -11,7 +11,9 @@ urlpatterns = patterns('',
 
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^$', include('account.urls')),
+    url(r'^accounts/', include('account.urls')),
     url(r'^account/', include('account.urls')),
     url(r'^project/', include('project.urls')),
     url(r'^user/$', users.users),
+    url(r'^ding_approval/', include('ding_approval.urls')),
 )

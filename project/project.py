@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import json
+import requests
 from datetime import datetime
 
 from django.http import HttpResponseRedirect, HttpResponse
@@ -45,6 +46,58 @@ def project_list(request):
 		}for project in projects]
 
 	jsons['items'].append(('project_infos', json.dumps(project_infos)))
+
+	# try:
+	# 	# DingTalk配置信息
+	# 	CORP_ID = "ding493ad98a4ba4816c35c2f4657eb6378f"
+	# 	CORP_SECRET = "BCjHU-kez9jRc9BPn5dFBSEMR9yqGJE8dWb7Pq5k0vnc8ePFI4Fgk92x_y18j9el"
+	# 	agent_id = "75747281"
+	# 	user_id = 'manager6658'
+
+	# 	ROOT_URL = "https://oapi.dingtalk.com"
+	# 	headers = {
+	# 		"Content-Type": "application/json",
+	# 		"Accept": "*/*",
+	# 		"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36"
+	# 	}
+	# 	ssl_verified = False
+	# 	res = requests.get("%s/gettoken?corpid=%s&corpsecret=%s" % (ROOT_URL, CORP_ID, CORP_SECRET), verify=ssl_verified)
+	# 	data = json.loads(res.content)
+	# 	print data,data['errmsg'].encode('gbk'),"====ss====sss======"
+	# 	access_tocken = data['access_token']
+	# 	print access_tocken,"----access_tocken-------"
+
+	# 	message = {
+	# 		"touser": user_id,
+	# 		"agentid": agent_id,
+	# 		"msgtype":"oa",
+	# 		"oa":{
+	# 			"message_url": "http://127.0.0.1:9000/project/",
+	# 	        "head": {
+	# 	            "bgcolor": "",
+	# 	            "text": "sadd"
+	# 	        },
+	# 	        "body": {
+	# 	            "title": "",
+	# 	            "form": [
+	# 	                {
+	# 	                    "key": "姓名:",
+	# 	                    "value": "张三sad"
+	# 	                }
+	# 	            ],
+	# 	            "image": "",
+	# 	            "author": "huangjian"
+	# 	        }
+	# 		}
+	# 	}
+	# 	# data = self.api_post("/message/send", message)
+	# 	url_send = "%s%s?access_token=%s" % (ROOT_URL, "/message/send", access_tocken)
+	# 	res_send = requests.post(url_send, headers=headers, verify=ssl_verified, json=message)
+	# 	data_send = json.loads(res_send.content)
+	# 	print data_send,"------data_send-------"
+	# except Exception, e:
+	# 	print e,"====error======"
+	print project_infos,"======project_infos======"
 	c = RequestContext(request, {
 		'jsons': jsons,
 		'first_nav': 'project',

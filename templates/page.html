@@ -9,7 +9,7 @@
                 <a class="navbar-brand" style="font-weight: bold;color:rgba(0, 0, 0, 0.71);" href="/project/">WeTeam</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                {% if first_nav != "project" and first_nav != "user"%}
+                {% if first_nav != "project" and first_nav != "user" and first_nav != "approval"%}
                 <ul class="nav navbar-nav">
                     <li {% if first_nav == "main" %}class="active"{% endif %}><a href="/project/main/?project_id={{project_id}}">看板</a></li>
                     <li {% if first_nav == "require" %}class="active"{% endif %}><a href="/project/require_list/?project_id={{project_id}}">需求</a></li>
@@ -24,6 +24,8 @@
                     {% if role == 0 or first_nav == "user" %}
                         <li {% if first_nav == "user" %}class="active"{% endif %}><a href="/user/">成员配置</a></li>
                     {% endif %}
+
+                    <li {% if first_nav == "approval" %}class="active"{% endif %}><a href="/ding_approval/">钉钉审批</a></li>
                 </ul>
                 {% endif %}
                 <div class="btn-group navbar-form navbar-right">
@@ -259,7 +261,6 @@
             }
         });
     })
-
 </script>
 {% block js %}{% endblock %}
 {% endblock %}

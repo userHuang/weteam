@@ -1,0 +1,61 @@
+.code-box-demo .ant-row {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.code-box-demo .ant-row > div {
+    padding: 0 8px;
+}
+
+.ant-card-head-title{
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.xui-member-li{
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.xui-addUser-input{
+    margin: 0 auto;
+    width: 80%;
+    color: #000;
+}
+
+.xui-addUser-input span{
+    margin-bottom: 20px;
+}
+
+.xui-addUser-input span .ant-input-group-addon{
+    width: 80px;
+    color: rgba(31, 28, 28, 0.79);
+    font-size: 14px;
+}
+
+.ant-input-group .ant-input{
+    color: #000;
+    font-size: 14px;
+}
+
+.ant-modal{
+    width: 720px !important;
+}
+
+textarea{
+    resize: vertical;
+}
+
+.xa-require-complete{
+    text-decoration: line-through;
+}
+
+.ant-message{
+    top: 80px;
+}
+
+.ant-message-notice-content{
+    width: 480px;
+    font-size: 16px;
+}

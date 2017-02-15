@@ -33,6 +33,7 @@ module.exports = {
     },
 
     resolve: {
+        extensions: ['', '.web.js', '.js', '.json'],
         alias: {
           dynamicRequire: 'dynamic_require'
         },
