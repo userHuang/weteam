@@ -86,7 +86,7 @@ def add_approval(request):
         CORP_ID = "ding493ad98a4ba4816c35c2f4657eb6378f"
         CORP_SECRET = "BCjHU-kez9jRc9BPn5dFBSEMR9yqGJE8dWb7Pq5k0vnc8ePFI4Fgk92x_y18j9el"
         agent_id = "75747281"
-        touser_id = 'manager6658|0160305869-194382207|0329140559706077'
+        touser_id = 'manager6658'
         ssl_verified = False
 
         headers = {
@@ -101,7 +101,7 @@ def add_approval(request):
 
 
         name = User.objects.get(id=request.user.id).first_name
-        message_url = "http://192.168.0.128:9000/ding_approval/approval_detail?id=%s" %ding_approvals[0].id
+        message_url = "http://192.168.0.109:9000/ding_approval/approval_detail?id=%s" %ding_approvals[0].id
 
         # ding_money = (%s,%s) %(money,'元')
         message = {

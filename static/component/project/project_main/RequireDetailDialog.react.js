@@ -33,12 +33,6 @@ const RequireDetailDialog = React.createClass({
         });
     },
 
-    onChangeValue(event){
-        const name = event.target.getAttribute('name');
-        const value = event.target.value;
-        Action.updateValues(name, value);
-    },
-
     handleCancel(e) {
         this.setState({
             visible: false,

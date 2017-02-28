@@ -73,17 +73,30 @@ def add_bug(request):
     name = request.POST.get('name', '')
     remark = request.POST.get('remark', '')
     project_id = request.POST.get('project_id', -1)
-
+    relation_id = int(request.POST.get('relation_id', -1))
     try:
         acount_name = User.objects.get(id=request.user.id).first_name
-        project_models.Requirement.objects.create(
-            project_id = project_id,
-            name= name,
-            remark= remark,
-            creator= acount_name,
-            creator_id = request.user.id,
-            require_type = 1
-        )
+        if relation_id !=-1:
+            project_models.Requirement.objects.create(
+                project_id = project_id,
+                relation_id=relation_id,
+                name= name,
+                remark= remark,
+                creator= acount_name,
+                creator_id = request.user.id,
+                require_type = 1,
+                status = 0
+            )
+        else:
+            project_models.Requirement.objects.create(
+                project_id = project_id,
+                relation_id=relation_id,
+                name= name,
+                remark= remark,
+                creator= acount_name,
+                creator_id = request.user.id,
+                require_type = 1
+            )
     except Exception, e:
         print e
     

@@ -12,13 +12,21 @@ var W = require('../../loadJSON');
 var DialogStore = StoreUtil.createStore(Dispatcher, {
     actions: {
         'handleResetValues': Constant.PROJECT_REQUIREMENT_RESET_VALUES,
-        'handleShowModal': Constant.PROJECT_MAIN_SHOW_MODAL
+        'handleShowModal': Constant.PROJECT_MAIN_SHOW_MODAL,
+        'handleUpdateValues': Constant.PROJECT_MAIN_UPDATE_VALUES
     },
 
     init() {
         this.data = {
             visible: false
         };
+    },
+
+    handleUpdateValues(action) {
+        var property = action.data.property;
+        var value = action.data.value;
+        this.data[property] = value;
+        this.__emitChange();
     },
 
     handleShowModal() {

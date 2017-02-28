@@ -20,7 +20,8 @@ var Action = {
                     Dispatcher.dispatch({
 						actionType: Constant.PROJECT_MAIN_GET_REQUIRE,
 						data: {
-							'requirements': JSON.parse(resp.data.requirements)
+							'requirements': JSON.parse(resp.data.requirements),
+                            'relationRequires': JSON.parse(resp.data.relation_requires)
 						}
 					});
                 }
@@ -52,12 +53,44 @@ var Action = {
         });
 	},
 
+    addRelationBug(name, remark, relationId, projectId) {
+        console.log(name, remark, relationId, projectId,'name, remark, relationId, projectId');
+        $.ajax({
+            url:'/project/add_bug/',
+            type:'post',
+            data:{
+                'name': name,
+                'remark': remark,
+                'project_id': projectId,
+                'relation_id': relationId
+            },
+            success:function(resp){
+                if(resp.code == 200){
+                    Action.getRequire(projectId);
+                }
+            },
+            error:function(){
+                console.log('create_fail');
+            }
+        });
+    },
+
     showModal() {
         Dispatcher.dispatch({
             actionType: Constant.PROJECT_MAIN_SHOW_MODAL,
             data: {}
         });
     },
+
+    updateValues (property, value) {
+        Dispatcher.dispatch({
+            actionType: Constant.PROJECT_MAIN_UPDATE_VALUES,
+            data: {
+                property: property,
+                value: value
+            }
+        });
+    }
 };
 
 module.exports = Action;

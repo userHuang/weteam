@@ -17,12 +17,14 @@ var Store = StoreUtil.createStore(Dispatcher, {
 	init() {
 		this.data = {
 			'requirements': [],
+			'relationRequires': [],
 			'visible': false
 		}
 	},
 
 	handleGetRequires(action) {
 		this.data['requirements'] = action.data.requirements;
+		this.data['relationRequires'] = action.data.relationRequires;
 		this.__emitChange();
 	},
 

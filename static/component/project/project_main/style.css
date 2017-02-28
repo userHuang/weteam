@@ -88,3 +88,21 @@
 .xui-bug .ant-card-head{
     background: rgba(240, 52, 52, 0.85);
 }
+
+.xi-addBug-content span{
+    margin-bottom: 20px;
+}
+
+.xi-relation-title{
+    padding: 4px 7px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.65);
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    display: table-cell;
+    height: 26px;
+}

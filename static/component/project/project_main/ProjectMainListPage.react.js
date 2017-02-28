@@ -8,6 +8,7 @@ const Store = require('./Store');
 const Constant = require('./Constant');
 const Action = require('./Action');
 const RequireDetailDialog = require('./RequireDetailDialog.react');
+const KanbanHeadAction = require('./KanbanHeadAction.react');
 require('./style.css');
 require('./weteam.css');
 
@@ -60,6 +61,7 @@ const ProjectMainListPage = React.createClass({
 	render() {
 		var _this = this;
 		var requirements = this.state.requirements;
+		var relationRequires = this.state.relationRequires;
 		var requireDatas = [];
 
 		if(requirements.length>0){
@@ -100,6 +102,7 @@ const ProjectMainListPage = React.createClass({
 					requiresRow = requires.map((require, index) => {
 						const title = require.require_type === 0? '需求 '+ require.id: 'BUG '+ require.id;
 						requireClassName = require.require_type === 0?'mt20 xui-require': 'mt20 xui-bug';
+						const relation = require.require_type === 1? <span>关联需求: {require.relation_id}</span>: '';
 						const refName = 'require_' + require.id;
 						const status = require.status
 						const requireId = require.id
@@ -129,6 +132,7 @@ const ProjectMainListPage = React.createClass({
 			                        onMouseOver = {_this.onMouseOver.bind(null,refName)} 
 			                        onMouseOut={_this.onMouseOut.bind(null,refName)} 
 			                        key={index}>
+			                        	{relation}
 			                            <span className="xui-project-description" style={{textDecoration: 'line-through'}}>{require.name}</span>
 			                            <div className="xui-project-participant">
 			                                {participantName}
@@ -146,6 +150,7 @@ const ProjectMainListPage = React.createClass({
 									onMouseOver = {_this.onMouseOver.bind(null,refName)} 
 									onMouseOut={_this.onMouseOut.bind(null,refName)} 
 									key={index}>
+										{relation}
 						        		<span className="xui-project-description">{require.name}</span>
 						        		<div className="xui-project-participant">
 						        			{participantName}
@@ -187,6 +192,7 @@ const ProjectMainListPage = React.createClass({
 
 		return (
 			<div className="xui-kanbanPanel">
+				<KanbanHeadAction relationRequires={relationRequires}/>
 				<div className="xui-kanbanContainer">
 					<div className="xui-kanban xa-kanban clearfix" style={{ width: '1600px', height: '584px' }}>
 					    {requireDatas}

@@ -52,6 +52,7 @@ def get_project_data(requirements, request, user_id2name):
 
 		requires.append({
 			'id': requirement.id,
+			'relation_id': requirement.relation_id,
 			'status': requirement.status,
 			'require_type': requirement.require_type,
 			'name': requirement.name,
@@ -110,9 +111,15 @@ def get_main(request):
 		complete_requires = get_project_data(complete_requirements, request, user_id2name)
 		# requires['complete_requires'] = complete_requires
 		requires.append({'complete_requires': complete_requires})
+
+		#关联需求
+		relation_requirements = requirements.filter(status__in=[2,3,4], require_type=0)
+		relation_requires = get_project_data(relation_requirements, request, user_id2name)
+
 	response = create_response(200)
 	response.data = {
-		'requirements': json.dumps(requires)
+		'requirements': json.dumps(requires),
+		'relation_requires': json.dumps(relation_requires)
 	}
 	return response.get_response()
 

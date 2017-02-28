@@ -35,6 +35,7 @@ class Requirement(models.Model):
     需求
     """
     project_id = models.IntegerField(default=0) #关联项目的id
+    relation_id = models.IntegerField(default=-1) #关联需求id的bug
     name = models.CharField(max_length=1024, null=True) #需求名
     creator = models.CharField(max_length=32, null=True) #创建人
     creator_id = models.IntegerField(default=0) #创建人的id
