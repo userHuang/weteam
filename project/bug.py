@@ -77,7 +77,7 @@ def add_bug(request):
     try:
         acount_name = User.objects.get(id=request.user.id).first_name
         if relation_id !=-1:
-            project_models.Requirement.objects.create(
+            bug = project_models.Requirement.objects.create(
                 project_id = project_id,
                 relation_id=relation_id,
                 name= name,
@@ -87,6 +87,7 @@ def add_bug(request):
                 require_type = 1,
                 status = 0
             )
+            project_models.Requirement.objects.filter(id=relation_id).update(relation_id=bug.id)
         else:
             project_models.Requirement.objects.create(
                 project_id = project_id,

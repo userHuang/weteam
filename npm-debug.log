@@ -1,0 +1,49 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'E:\\nodejs\\node.exe',
+1 verbose cli   'C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'dev' ]
+2 info using npm@3.10.8
+3 info using node@v4.4.3
+4 verbose run-script [ 'predev', 'dev', 'postdev' ]
+5 info lifecycle weteam@1.0.0~predev: weteam@1.0.0
+6 silly lifecycle weteam@1.0.0~predev: no script for predev, continuing
+7 info lifecycle weteam@1.0.0~dev: weteam@1.0.0
+8 verbose lifecycle weteam@1.0.0~dev: unsafe-perm in lifecycle true
+9 verbose lifecycle weteam@1.0.0~dev: PATH: C:\Users\Administrator\AppData\Roaming\npm\node_modules\npm\bin\node-gyp-bin;F:\python_react\weteam\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;D:\MySQL\MySQL Server 5.5\bin;E:\nodejs\node_modules\npm\node_modules;E:\nodejs\;E:\Git\bin;E:\SVN\bin;E:\TortoiseGit\bin;C:\ProgramData\chocolatey\bin;C:\Users\Administrator\AppData\Roaming\npm;E:\Git\bin;D:\Bandizip
+10 verbose lifecycle weteam@1.0.0~dev: CWD: F:\python_react\weteam
+11 silly lifecycle weteam@1.0.0~dev: Args: [ '/d /s /c',
+11 silly lifecycle   'webpack-dev-server --devtool eval --progress --colors --inline --hot --content-base build --port 4188 --host 0.0.0.0' ]
+12 silly lifecycle weteam@1.0.0~dev: Returned: code: 3221225786  signal: null
+13 info lifecycle weteam@1.0.0~dev: Failed to exec dev script
+14 verbose stack Error: weteam@1.0.0 dev: `webpack-dev-server --devtool eval --progress --colors --inline --hot --content-base build --port 4188 --host 0.0.0.0`
+14 verbose stack Exit status 3221225786
+14 verbose stack     at EventEmitter.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\npm\lib\utils\lifecycle.js:255:16)
+14 verbose stack     at emitTwo (events.js:87:13)
+14 verbose stack     at EventEmitter.emit (events.js:172:7)
+14 verbose stack     at ChildProcess.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\npm\lib\utils\spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:87:13)
+14 verbose stack     at ChildProcess.emit (events.js:172:7)
+14 verbose stack     at maybeClose (internal/child_process.js:827:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+15 verbose pkgid weteam@1.0.0
+16 verbose cwd F:\python_react\weteam
+17 error Windows_NT 6.1.7601
+18 error argv "E:\\nodejs\\node.exe" "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "run" "dev"
+19 error node v4.4.3
+20 error npm  v3.10.8
+21 error code ELIFECYCLE
+22 error weteam@1.0.0 dev: `webpack-dev-server --devtool eval --progress --colors --inline --hot --content-base build --port 4188 --host 0.0.0.0`
+22 error Exit status 3221225786
+23 error Failed at the weteam@1.0.0 dev script 'webpack-dev-server --devtool eval --progress --colors --inline --hot --content-base build --port 4188 --host 0.0.0.0'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the weteam package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     webpack-dev-server --devtool eval --progress --colors --inline --hot --content-base build --port 4188 --host 0.0.0.0
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs weteam
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls weteam
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]

@@ -14,6 +14,7 @@ require('./weteam.css');
 
 import {  Card, Col, Row } from 'antd';
 import { Popover, Button } from 'antd';
+import { message } from 'antd';
 
 const ProjectMainListPage = React.createClass({
 	getInitialState() {
@@ -46,7 +47,12 @@ const ProjectMainListPage = React.createClass({
 		ReactDOM.findDOMNode(divClose).style.display = "none";
 	},
 
-	changeStatus(status, requireId) {
+	changeStatus(status, requireId, relation_id, require_type) {
+		console.log(relation_id,"----relation_id-----");
+		if(require_type == 0 && status == 4 && relation_id !=-1 ){
+			message.error('该需求有关联的bug未完成，请先关闭bug！', 3);
+			return;
+		}
 		const projectId = window.projectId;
 		Action.changeStatus(projectId, requireId, status);
 		this.setState({
@@ -100,9 +106,11 @@ const ProjectMainListPage = React.createClass({
 
 				if(requires){
 					requiresRow = requires.map((require, index) => {
-						const title = require.require_type === 0? '需求 '+ require.id: 'BUG '+ require.id;
-						requireClassName = require.require_type === 0?'mt20 xui-require': 'mt20 xui-bug';
-						const relation = require.require_type === 1? <span>关联需求: {require.relation_id}</span>: '';
+						const require_type = require.require_type;
+						const relation_id = require.relation_id;
+						const title = require_type === 0? '需求 '+ require.id: 'BUG '+ require.id;
+						requireClassName = require_type === 0?'mt20 xui-require': 'mt20 xui-bug';
+						const relation = (require_type === 1 && relation_id != -1)? <span style={{color: "red"}} >关联需求: {require.relation_id}</span>: '';
 						const refName = 'require_' + require.id;
 						const status = require.status
 						const requireId = require.id
@@ -112,7 +120,7 @@ const ProjectMainListPage = React.createClass({
 						    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 0, requireId)}>待开发</a>
 						    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 1, requireId)}>开发</a>
 						    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 2, requireId)}>待测试</a>
-						    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 3, requireId)}>测试</a>
+						    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 3, requireId, relation_id, require_type)}>测试</a>
 						    	<a className="xui-tiaozhuan-btn" onClick={_this.changeStatus.bind(null, 4, requireId)}>已完成</a>
 							</div>
 						);
@@ -163,7 +171,7 @@ const ProjectMainListPage = React.createClass({
 						        			>
 										        <a className="glyphicon glyphicon-fast-forward mr10" title="跳转"></a>
 									      	</Popover>
-						        			<a className="glyphicon glyphicon-arrow-right" title="前进" onClick={_this.changeStatus.bind(null,require.status,require.id)}></a>
+						        			<a className="glyphicon glyphicon-arrow-right" title="前进" onClick={_this.changeStatus.bind(null,require.status,require.id,relation_id,require_type)}></a>
 						        		</span>
 						        </Card>
 							)

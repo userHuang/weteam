@@ -84,7 +84,7 @@ const KanbanHeadAction = React.createClass({
 							<Select
 								showSearch
 								style={{ width: 600, display:"table-cell"}}
-								placeholder="Select a person"
+								placeholder="请关联一个需求"
 								optionFilterProp="children"
 								onSelect={this.selectChange}
 								filterOption={(input, option) => option.props.value.toLowerCase().indexOf(input.toLowerCase()) >= 0}

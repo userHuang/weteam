@@ -49,7 +49,7 @@ const ProjectListPage = React.createClass({
 		}
 
 		return (
-			<div style={{ background: '#ECECEC', padding: '30px' }}>
+			<div style={{ background: '#ECECEC', padding: '30px'}}>
 			    {projectRow}
 		  	</div>
 		)
