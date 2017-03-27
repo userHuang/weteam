@@ -24,6 +24,7 @@ $(document).ready(function() {
 						<div className="xui-container pt10 pb40 pl15 pr15" style={{overflowX:'hidden',margin:'0px'}}>
 							{pageContent}
 						</div>
+						
 					</div>
 				</div>
 			)

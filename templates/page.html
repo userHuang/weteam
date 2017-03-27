@@ -14,7 +14,8 @@
                     <li {% if first_nav == "main" %}class="active"{% endif %}><a href="/project/main/?project_id={{project_id}}">看板</a></li>
                     <li {% if first_nav == "require" %}class="active"{% endif %}><a href="/project/require_list/?project_id={{project_id}}">需求</a></li>
                     <li {% if first_nav == "bug" %}class="active"{% endif %}><a href="/project/bug/?project_id={{project_id}}">Bug</a></li>
-                    <li><a href="#">统计</a></li>
+                    <li {% if first_nav == "statistics" %}class="active"{% endif %}><a href="/project/statistics/?project_id={{project_id}}">统计</a></li>
+<!--                     <li><a href="#">统计</a></li> -->
                     <li {% if first_nav == "member" %}class="active"{% endif %}><a href="/project/members/?project_id={{project_id}}">成员</a></li>
                 </ul>
                 {% else %}
@@ -143,7 +144,10 @@
     </div>
 </div>
 
-<div class="xa-pageContainer pr"></div>
+<div class="xa-pageContainer pr">
+    
+</div>
+<div id="main"></div>
 <div id="jsons" style="display: none;">
     {% for inner_json_name, inner_json_content in jsons.items %}
     <div id="__json-{{inner_json_name}}">

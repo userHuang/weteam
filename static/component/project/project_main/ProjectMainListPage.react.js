@@ -47,8 +47,9 @@ const ProjectMainListPage = React.createClass({
 		ReactDOM.findDOMNode(divClose).style.display = "none";
 	},
 
+	//状态改变
 	changeStatus(status, requireId, relation_id, require_type) {
-		console.log(relation_id,"----relation_id-----");
+		//require_type:是否是需求  relation_id:是否有关联bug
 		if(require_type == 0 && status == 4 && relation_id !=-1 ){
 			message.error('该需求有关联的bug未完成，请先关闭bug！', 3);
 			return;
@@ -77,7 +78,7 @@ const ProjectMainListPage = React.createClass({
 				var requireTitle = '';
 				var requireClassName = '';
 				var maxHasDo = 0;
-
+				//看板标题
 				if(i == 0){
 					requires = requirement['todo_requires'];
 					requireTitle = 'TODO';

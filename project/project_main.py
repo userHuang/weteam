@@ -147,7 +147,7 @@ def update_status(request):
 		project_models.Requirement.objects.filter(relation_id=require_id).update(relation_id=-1)
 		project_models.Requirement.objects.filter(id=require_id).update(status=status+1, end_at=date_now, participant=participants, updated_at=date_now, relation_id=-1)
 	else:#未完成
-		project_models.Requirement.objects.filter(id=require_id).update(status=status+1, participant=participants, updated_at=date_now)
+		project_models.Requirement.objects.filter(id=require_id).update(status=status+1, participant=participants, updated_at=date_now, belong_id=user_id)
 
 	response = create_response(200)
 	return response.get_response()

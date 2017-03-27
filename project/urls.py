@@ -7,6 +7,7 @@ import project_main
 import members
 import requirement
 import bug
+import statistics
 
 urlpatterns = patterns('',
     url(r'^$', project.project_list),
@@ -33,4 +34,8 @@ urlpatterns = patterns('',
     url(r'^bug/', bug.bug_list),
     url(r'^get_bug/', bug.get_bug),
     url(r'^add_bug/', bug.add_bug),
+
+    #统计
+    url(r'^statistics/', statistics.statistics),
+    url(r'^get_statistics/', statistics.get_statistics)
 )

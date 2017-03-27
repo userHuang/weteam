@@ -39,7 +39,8 @@ class Requirement(models.Model):
     name = models.CharField(max_length=1024, null=True) #需求名
     creator = models.CharField(max_length=32, null=True) #创建人
     creator_id = models.IntegerField(default=0) #创建人的id
-    participant = models.CharField(max_length=32, default="") #参与人 user_id
+    participant = models.CharField(max_length=32, default="") #s所有参与人 user_ids （字符串）
+    belong_id = models.IntegerField(max_length=32, default=0) #需求(bug)归属人 user_id
     remark = models.TextField() #备注
     status = models.IntegerField(default=-1) # {-1:未进入看板, 0: TODO, 1:待开发, 2:开发, 3:待测试, 4:测试, 5:已完成}
     require_type = models.IntegerField(default=0) # {0:需求, 1：bug}

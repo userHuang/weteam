@@ -31,7 +31,6 @@ const MemberPage = React.createClass({
 		var btnStyle = {};
 		var users = this.state.users;
 		var role = this.state.role;
-		console.log(role,"+++++===++++");
 		if(role==1){
 			btnStyle = {
 				display: 'none'
@@ -58,7 +57,7 @@ const MemberPage = React.createClass({
 			<div style={{ background: '#ECECEC', padding: '30px', margin: '0 auto', width:'90%' }}>
 				<ul>{memberLi}</ul>
 				<div style={btnStyle}><AddUsrDialog allUsers={this.state.allUsers} projectId={this.state.projectId}/></div>
-		  	</div>
+			</div>
 		)
 	}
 })

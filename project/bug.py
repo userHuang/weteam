@@ -77,6 +77,7 @@ def add_bug(request):
     try:
         acount_name = User.objects.get(id=request.user.id).first_name
         if relation_id !=-1:
+            #看板页面添加bug
             bug = project_models.Requirement.objects.create(
                 project_id = project_id,
                 relation_id=relation_id,
@@ -85,10 +86,12 @@ def add_bug(request):
                 creator= acount_name,
                 creator_id = request.user.id,
                 require_type = 1,
+                belong_id = request.user.id,
                 status = 0
             )
             project_models.Requirement.objects.filter(id=relation_id).update(relation_id=bug.id)
         else:
+            #bug页面添加bug
             project_models.Requirement.objects.create(
                 project_id = project_id,
                 relation_id=relation_id,
