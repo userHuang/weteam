@@ -7,6 +7,7 @@ const DialogStore = require('./DialogStore');
 
 import { Modal, Button } from 'antd';
 import { Input, Select } from 'antd';
+import { message } from 'antd';
 
 require('./style.css');
 
@@ -25,29 +26,36 @@ const KanbanHeadAction = React.createClass({
 	},
 
 	handleOk() {
-		console.log(this.state,"=====");
         const name = this.state.name;
         const remark = this.state.remark;
         const relationId = this.state.relationId;
         const projectId = window.projectId;
-        console.log(name, remark, relationId, projectId);
+
+        if(!name){
+        	message.error('请输入标题！', 3);
+        	return;
+        }
+        if(!relationId){
+        	message.error('请关联一个需求！', 3);
+        	return;
+        }
         Action.addRelationBug(name, remark, relationId, projectId);
 		this.setState({
 			visible: false,
+			remark: '',
+            relationId: ''
 		});
 	},
 
 	onChangeValue(event){
 		const name = event.target.getAttribute('name');
 		const value = event.target.value;
-		console.log(name,value,'=========');
 		Action.updateValues(name, value);
 	},
 
 	selectChange(value,option){
 		const name = 'relationId';
 		const requireId = option.props.requireId;
-		console.log(name,requireId,"==sss===");
 		Action.updateValues(name, requireId);
 	},
 
