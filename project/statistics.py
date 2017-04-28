@@ -20,9 +20,7 @@ def statistics(request):
     """
     需求、bug统计
     """
-
     project_id = request.GET.get('project_id', -1)
-
     c = RequestContext(request, {
         'project_id': project_id,
         'first_nav': 'statistics',
@@ -38,7 +36,6 @@ def get_statistics(request):
     user_id2name = {auth_user.id:auth_user.first_name for auth_user in auth_users}
 
     project_requirements = project_models.Requirement.objects.filter(project_id=project_id)
-    # user_id2requirements = {requirement.creator_id:requirement for requirement in project_requirements}
 
     user_id2requires = {}
     user_id2bugs = {}

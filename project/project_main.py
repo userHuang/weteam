@@ -79,37 +79,31 @@ def get_main(request):
 		#todo
 		todo_requirements = requirements.filter(status=0)
 		todo_requires = get_project_data(todo_requirements, request, user_id2name)
-		# requires['todo_requires'] =  todo_requires
 		requires.append({'todo_requires': todo_requires})
 
 		#待开发
 		will_requirements = requirements.filter(status=1)
 		will_requires = get_project_data(will_requirements, request, user_id2name)
-		# requires['will_requires'] =  will_requires
 		requires.append({'will_requires': will_requires})
 
 		#开发
 		has_requirements = requirements.filter(status=2)
 		has_requires = get_project_data(has_requirements, request, user_id2name)
-		# requires['has_requires'] = has_requires
 		requires.append({'has_requires': has_requires})
 
 		#待测试
 		will_test_requires = requirements.filter(status=3)
 		will_tests = get_project_data(will_test_requires, request, user_id2name)
-		# requires['will_tests'] =  will_tests
 		requires.append({'will_tests': will_tests})
 
 		#测试
 		has_test_requires = requirements.filter(status=4)
 		has_tests = get_project_data(has_test_requires, request, user_id2name)
-		# requires['has_tests'] = has_tests
 		requires.append({'has_tests': has_tests})
 
 		#已完成
 		complete_requirements = requirements.filter(status=5)
 		complete_requires = get_project_data(complete_requirements, request, user_id2name)
-		# requires['complete_requires'] = complete_requires
 		requires.append({'complete_requires': complete_requires})
 
 		#关联需求
