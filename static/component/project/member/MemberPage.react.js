@@ -1,6 +1,7 @@
 "use strict";
 
 const React = require('react');
+const ReactDOM = require('react-dom');
 const _ = require('underscore');
 
 const Store = require('./Store');
@@ -26,7 +27,23 @@ const MemberPage = React.createClass({
 		Action.getMembers(this.state.projectId);
 	},
 
+	deleteMember(userId) {
+		console.log(userId,"+++++++++userId++++++");
+		Action.deleteMember(userId, this.state.projectId);
+	},
+
+	onMouseOver(refName) {
+		var divClose = this.refs[refName];
+		ReactDOM.findDOMNode(divClose).style.display = "block";
+	},
+
+	onMouseOut(refName) {
+		var divClose = this.refs[refName];
+		ReactDOM.findDOMNode(divClose).style.display = "none";
+	},
+
 	render() {
+		var _this = this;
 		var memberLi = [];
 		var btnStyle = {};
 		var users = this.state.users;
@@ -39,12 +56,17 @@ const MemberPage = React.createClass({
 
 		if(users.length>0){
 			memberLi = users.map((user, index) => {
+				console.log(user);
+				var refName = 'xa_user_' + user.user_id;
 				return(
-					<li className="xui-member-li" key={index}>
+					<li className="xui-member-li" key={index}  
+					onMouseOver = {_this.onMouseOver.bind(null,refName)} 
+					onMouseOut={_this.onMouseOut.bind(null,refName)} >
 						<Card style={{ width: 180 }}>
 							<p><img src={user.img_url} className="xui-account-img"/> </p>
 							<p>姓名：{user.name}</p>
 							<p>账号：{user.account}</p>
+							<a ref={refName} title="移除" onClick={_this.deleteMember.bind(null, user.user_id)} className="xa-delete-tag">x</a>
 						</Card>
 					</li>
 				)

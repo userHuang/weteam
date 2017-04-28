@@ -6,6 +6,7 @@ var DialogStore = require('./DialogStore');
 
 import { Modal, Button } from 'antd';
 import { Input, Radio } from 'antd';
+import { message } from 'antd';
 
 require('./style.css');
 
@@ -28,6 +29,14 @@ const AddUsrDialog = React.createClass({
         const userName = this.state.userName;
         const account = this.state.account;
         const role = this.state.role;
+        if(!userName){
+            message.success('请输入姓名', 1.5);
+            return;
+        }
+        if(!account){
+            message.error('请输入登录账户', 1.5);
+            return;
+        }
         Action.addUser(userName, account, role);
         Action.resetValues();
     },

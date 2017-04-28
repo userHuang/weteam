@@ -31,6 +31,9 @@ def members(request):
 	return render_to_response('member/members.html', c)
 
 def get_members(request):
+	"""
+	获取成员
+	"""
 	project_id = request.GET.get('project_id', -1)
 	role = account_models.UserProfile.objects.get(user_id=request.user.id, status=True).role
 	user_profiles = account_models.UserProfile.objects.filter(belongs__icontains=project_id, status=True).order_by('updated_at')
@@ -41,6 +44,7 @@ def get_members(request):
 	users = []
 	if user_profiles:
 		users = [{
+			'user_id': user_profile.user_id,
 			'name': user_id2name[user_profile.user_id],
 			'account': user_profile.name,
 			'img_url': user_profile.img_url if user_profile.img_url else '/static/img/default_user.jpg'
@@ -85,4 +89,24 @@ def add_member(request):
 		print e
 		response = create_response(500)
 	
+	return response.get_response()
+
+def delete_member(request):
+	"""
+	删除成员
+	"""
+	user_id = int(request.POST.get('user_id', -1))
+	project_id = request.POST.get('project_id', -1)
+	print user_id,"-------"
+	response = create_response(200)
+	try:
+		belongs = account_models.UserProfile.objects.get(user_id=user_id).belongs
+		belongs = belongs.split(",")
+		belong_ids = filter(lambda x: x != project_id, belongs)
+		print belong_ids,"=====belong_ids===="
+		belong_ids = ','.join(belong_ids)
+		account_models.UserProfile.objects.filter(user_id=user_id).update(belongs = belong_ids)
+	except Exception, e:
+		response = create_response(500)
+
 	return response.get_response()
